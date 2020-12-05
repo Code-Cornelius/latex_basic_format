@@ -1,0 +1,13 @@
+*.bak
+*.aux
+*.log
+*.lof
+*.out
+*.xml
+*.gz
+*.blg
+*.bcf
+*.bbl
+*.tdo
+*.toc
+
