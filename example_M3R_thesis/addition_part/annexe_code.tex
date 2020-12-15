@@ -1,0 +1,1064 @@
+\chapter{Code: Personal libraries}
+
+With that project, I started writing my own libraries. For now, it is composed of those following functions. I haven't done anything fancy, I will certainly improve those in a second time implementing decorators, classes and perhaps templates.
+
+\section{Plot functions}
+
+\begin{Verbatim}[fontsize=\tiny]
+
+# plot graph can plot up to 2 graphs on the same figure.
+# every argument has to be a list in order to make it work.
+# title and labels has to be list, where one has :
+## [title 1, title 2] ; [x1label y1label, x2label y2label]
+# the set of parameters is the same for the two subplots.
+
+### don't forget to write down #plt.show() at the end !
+def plot_graph(data_x, data_y, title = ["No title", "No title"], labels = ["No label","No label","No label","No label"],
+               logy=[False, False], xint=[False, False], yint=[False, False],
+               cum=[False, False], scater=[False, False],
+               data2_x=None, data2_y=None,
+               parameters=None, name_parameters=None,
+               name_save_file=None):
+    plt.figure(figsize=(10, 5))
+    plt.grid(True)
+    if parameters is not None:
+        nb_parameters = len(parameters)
+        sous_text = " Parameters : \n"
+        for i in range(nb_parameters):
+            sous_text += str(name_parameters[i]) + " = {}".format(parameters[i])
+            # end of the list, we finish by a full stop.
+            if i == nb_parameters - 1:
+                sous_text += "."
+            # certain chosen number of parameters by line, globally, 3 by line.
+            # There shoudln't be more than 16 parameters
+            elif i in [4, 7, 10, 13, 16]:
+                sous_text += ", \n "
+            # otherwise, just keep writing on the same line.
+            else:
+                sous_text += ", "
+    if data2_x is not None:
+        ax = plt.subplot(121)
+        plt.xlabel(labels[0], fontsize=10)
+        plt.ylabel(labels[1], fontsize=10)
+        plt.title(title[0], fontsize= 8)
+        x = data_x
+        y = data_y
+        if scater[0]:
+            plt.plot(x, y, 'mo', markersize=0.2, label=labels[1])
+        else:
+            plt.plot(x, y, 'mo-', markersize=0.2, linewidth = 0.5, label=labels[1])
+        if logy[0]:
+            plt.xscale('log')
+        # for cumulative, I use another axis on the right.
+        if cum[0]:
+            ax_bis = ax.twinx()
+            ax_bis.plot(x, np.cumsum(y) / (np.cumsum(y)[-1]), color='darkorange',
+                        marker='o', linestyle='-', markersize=1, label="Cumulative ratio")
+            ax_bis.set_ylabel('cumulative ratio')
+            ax_bis.set_ylim([0, 1.1])
+            plt.legend(loc='best')
+        # change ticks for every integers
+        if xint[0]:
+            x_int = range(min(x), math.ceil(max(x)) + 1)
+            plt.xticks(x_int)
+        if yint[0]:
+            y_int = range(min(y), math.ceil(max(y)) + 2)
+            plt.yticks(y_int)
+
+        if parameters is not None:
+            bottom, top = plt.ylim()
+            left, right = plt.xlim()
+            plt.text(left + (right - left) * 0.2, bottom - (top - bottom) * 0.43, sous_text, fontsize=10)
+            plt.subplots_adjust(bottom=0.3, wspace=0.35)
+
+        ax = plt.subplot(122)
+        plt.xlabel(labels[2], fontsize=10)
+        plt.ylabel(labels[3], fontsize=10)
+        plt.title(title[1], fontsize=8)
+        x = data2_x
+        y = data2_y
+        if scater[1]:
+            plt.plot(x, y, 'mo', markersize=0.2, label=labels[1])
+        else:
+            plt.plot(x, y, 'mo-', linewidth = 0.5, markersize=0.2, label=labels[1])
+        if logy[1]:
+            plt.xscale('log')
+        # for cumulative, I use another axis on the right.
+        if cum[1]:
+            ax_bis = ax.twinx()
+            ax_bis.plot(x, np.cumsum(y) / (np.cumsum(y)[-1]), color='darkorange',
+                        marker='o', linestyle='-', markersize=1, label="Cumulative ratio")
+            ax_bis.set_ylabel('cumulative ratio')
+            ax_bis.set_ylim([0, 1.1])
+            plt.legend(loc='best')
+        # change ticks for every integers
+        if xint[1]:
+            x_int = range(min(x), math.ceil(max(x)) + 1)
+            plt.xticks(x_int)
+        if yint[1]:
+            y_int = range(min(y), math.ceil(max(y)) + 2)
+            plt.yticks(y_int)
+        if name_save_file is not None:
+            plt.savefig(name_save_file + '.png', dpi=1000)
+
+    else:
+        plt.xlabel(labels[0])
+        plt.ylabel(labels[1])
+        plt.title(title[0])
+        x = data_x
+        y = data_y
+        if scater[0]:
+            plt.plot(x, y, 'mo', markersize=0.2, label=labels[1])
+        else:
+            plt.plot(x, y, 'mo-', markersize=0.2, linewidth = 0.5, label=labels[1])
+        if logy[0]:
+            plt.xscale('log')
+        # for cumulative, I use another axis on the right.
+        if cum[0]:
+            ax = plt.subplot()
+            ax_bis = ax.twinx()
+            ax_bis.plot(x, np.cumsum(y) / (np.cumsum(y)[-1]), color='darkorange',
+                        marker='o', linestyle='-', markersize=1, label="Cumulative ratio")
+            ax_bis.set_ylabel('cumulative ratio')
+            ax_bis.set_ylim([0, 1.1])
+            plt.legend(loc='best')
+        # change ticks for every integers
+        if xint[0]:
+            x_int = range(min(x), math.ceil(max(x)) + 1)
+            plt.xticks(x_int)
+        if yint[0]:
+            y_int = range(min(y), math.ceil(max(y)) + 2)
+            plt.yticks(y_int)
+
+        if parameters is not None:
+            bottom, top = plt.ylim()
+            left, right = plt.xlim()
+            plt.text(left + (right - left) * 0.2, bottom - (top - bottom) * 0.43, sous_text, fontsize=10)
+            plt.subplots_adjust(bottom=0.3)
+        if name_save_file is not None:
+            plt.savefig(name_save_file + '.png', dpi=1000)
+    return
+
+
+# function for plotting histograms
+def hist(data, bins, title, labels, range=None):
+    plt.figure(figsize=(10, 5))
+    ax = plt.axes()
+    plt.ylabel("Nb of realisation inside a bin.")
+    values, base, _ = plt.hist(data, bins=bins, density=False, alpha=0.5, color="green", range=range, label="Histogram")
+    ax_bis = ax.twinx()
+    values = np.append(values, 0)
+    ax_bis.plot(base, np.cumsum(values) / np.cumsum(values)[-1], color='darkorange', marker='o', linestyle='-',
+                markersize=1, label="Cumulative Histogram")
+    plt.xlabel(labels)
+    plt.ylabel("Proportion of the cumulative total.")
+    plt.title(title, fontsize=20, y=1.02)
+    ax_bis.legend()
+    ax.legend()
+    return
+
+
+\end{Verbatim}
+
+\section{Generic Functions}
+
+\begin{Verbatim}[fontsize=\tiny]
+# function from overflow to integrate complex functions.
+# https://stackoverflow.com/questions/5965583/use-scipy-integrate-quad-to-integrate-complex-numbers
+def complex_quadrature(func, a, b, **kwargs):
+    def real_func(x):
+        return func(x).real
+
+    def imag_func(x):
+        return func(x).imag
+
+    real_integral = scipy.integrate.quad(real_func, a, b, **kwargs)
+    imag_integral = scipy.integrate.quad(imag_func, a, b, **kwargs)
+    return (real_integral[0] + 1j * imag_integral[0], real_integral[1:], imag_integral[1:])
+
+
+# useful function that I put at the end of certain functions to know how long they runned.
+# Print the time in a human format.
+def time_computational(A, B, title="no title"):
+    seconds = B - A
+    seconds = round(seconds)
+    m, s = divmod(seconds, 60)
+    h, m = divmod(m, 60)
+    beg = " Program : " + title + ", took roughly :"
+    if s == 0:
+        ts = ""
+    if s == 1:
+        ts = "{:d} second ".format(s)
+    if s != 1 and s != 0:
+        ts = "{:d} seconds ".format(s)
+
+    if m == 0:
+        tm = ""
+    if m == 1:
+        tm = "{:d} minut ".format(m)
+    if m != 1 and m != 0:
+        tm = "{:d} minuts ".format(m)
+
+    if h == 0:
+        th = ""
+    if h == 1:
+        th = "{:d} hour ".format(h)
+    if h != 1 and h != 0:
+        th = "{:d} hours ".format(h)
+
+    if h == s and s == m and m == 0:
+        ts = " 0.1 second "
+    print(100 * '~')
+    print(beg + th + tm + ts + 'to run.')
+    return
+
+
+# return the image of func(tt)
+def evaluate_function(func, tt, *args):
+    ## args if addit parameters are required
+    im = np.zeros(len(tt))
+    for i in range(len(tt)):
+        im[i] = func(tt[i], *args)
+    return im
+
+
+# compute integral when the values are given.
+def trapeze_int(t, y):
+    ans = 0
+    # corresponds to the case where the path is degenerated, only one point.
+    if len(t) <= 1:
+        return 0
+    # corresponds to the case where the vector is constant.
+    # Then in order to reduce the computation, I return the product of the length time with the constant.
+    if (len(set(y)) <= 1):
+        # this tests if there is only one value in the vector
+        # I return the difference between the timr beg end
+        # (because If t[0] \neq 0 there would be a problem).
+        # times the first value, which is equal to all of the other by the precedant test.
+        return (t[-1] - t[0]) * y[0]
+
+    DELTA = t[1] - t[0]
+    # go through all values except first and last
+    for i in range(1, len(t) - 1):
+        ans += DELTA * y[i]
+    ans += DELTA / 2 * (y[0] + y[-1])
+    return ans
+
+
+# e is the error.
+# tol is the each step tolerance
+def newtons_method(f, df, x0, e=10 ** (-10), tol=10 ** (-10)):
+    ## f is the function
+    ## df its derivative
+    ## x0    first guess
+    ## e the tolerance
+    # while f is bigger than the tolerance.
+    number_of_step_crash = 0
+    step = 1
+    while f(x0) > e or step > tol:
+        if number_of_step_crash > np.power(10, 9):
+            raise Exception("Is the function flat enough ?")
+        number_of_step_crash += 1
+        old_x0 = x0
+        x0 = x0 - f(x0) / df(x0)
+        step = abs(x0 - old_x0)
+    return x0
+
+
+def my_list_argmin(list):
+    return list.index(min(list))
+
+
+# when applied to an empty array, returns 0, which is the behaviour one would expect.
+def find_smallest_rank_leq_to_K(list, K, sorted=True):
+    if np.isscalar(list):
+        raise Exception("Object is not a list.")
+    # to generalize the function to multi dimensional arrays, I need to first know its number of dimension :
+    DIM = list.ndim
+    if DIM > 2:
+        raise Exception("The list has too many dimensions.")
+    if DIM == 1:
+        # sorted argument for cases where the list is not sorted. Sorting the list is still algorithmitcaly more efficient.
+        if not sorted:
+            list.sort()
+        return bisect.bisect_right(list, K)
+    if DIM == 2:
+        # I sort every line, and i search the minimal column for each row such that it satisfies certain properties.
+        if not sorted:
+            for i in range(np.shape(list)[0]):
+                list[i, :].sort()
+        # Here I had a problem, np.zeros gives back an array with floats in it. So I specify the dtype.
+        ans = np.zeros(np.shape(list)[0], dtype=int)
+        for i in range(np.shape(list)[0]):
+            ans[i] = bisect.bisect_right(list[i, :], K)
+        return ans
+\end{Verbatim}
+
+\chapter{Code: Main bits of code}
+
+Here is the code I used to simulate and compute my results. The code is not optimized at all. I worked upon optimization during summer and I acknowledge how bad my coding style was. In particular, I discovered how using the library math can be better than numpy when one deals with single values. Anyhow, the code below should be for the purpose of reproduction and understanding, rather than for practical use.
+
+
+
+
+
+\section{Simulations of processes}
+
+
+\subsection{Dynamics for normal heston and optimal solution}
+\begin{Verbatim}[fontsize=\tiny]
+# for computing iteratively phi, one needs to evaluate the inside of the integral. In order to do that,
+# I define small_phi.
+def small_psi(previous_phi, RHO, SIGMA, THETA, KAPPA):
+    Lambda = LAMBDA(RHO, SIGMA, THETA, KAPPA)
+    ans = (1 - 2 * RHO ** 2) / (2) * SIGMA ** 2 * previous_phi ** 2 - Lambda * previous_phi - THETA ** 2
+    return ans
+
+
+# defines the coefficients for fractional ADAMS method in order to compute a SDE path.
+# it needs the number of coefficients as well as the alpha of roughness.
+def fractional_ADAMS(k, alpha, DELTA):
+    # a needs k+2 elements, because j \in 0,k+1.
+    # b doesn't start at 0, so only k+1 élèments
+    a = np.zeros(k + 2)
+    b = np.zeros(k + 1)
+    for i in range(k + 2):
+        if i == 0:
+            a[i] = k ** (alpha + 1) - (k - alpha) * (k + 1) ** alpha
+        if i == k + 1:
+            a[i] = 1
+        if (i != k + 1) and (i != 0):
+            a[i] = (k - i + 2) ** (alpha + 1) + (k - i) ** (alpha + 1) - 2 * (k - i + 1) ** (alpha + 1)
+        if i != k + 1:
+            b[i] = (k + 1 - i) ** alpha - (k - i) ** alpha
+    a = 1 / math.gamma(alpha + 2) * DELTA ** alpha * a
+    b = 1 / math.gamma(alpha + 1) * DELTA ** alpha * b
+    return a, b
+
+
+# compute_psi, takes the time interval (t) and on every t, gives back the value of psi.
+# it also takes the necessary parameters
+def computation_psi(t, alpha, rho, sigma, theta, kappa, silent=True):
+    computation_time = time.time()
+    M = len(t)
+    psi = np.zeros(M)
+    DELTA = t[1] - t[0]
+    for k in range(M - 1):
+        a, b = fractional_ADAMS(k, alpha, DELTA)
+        f = np.zeros(k + 2)
+        for i in range(k + 1):
+            f[i] = small_psi(psi[i], rho, sigma, theta, kappa)
+        predictor = psi[0] + (sum(f[0:k + 1] * b[0:k + 1]))
+        f[k + 1] = small_psi(predictor, rho, sigma, theta, kappa)
+        psi[k + 1] = sum(f[0:k + 2] * a[0:k + 2])  # there was a + psi(0)
+        if k % 3000 == 0 and not silent:
+            print("calcul de psi : étape {} du process, pour alpha = {}.".format(k, alpha))
+    if not silent:
+        print("Fin des calculs de psi avec {} étapes.".format(M))
+        time_computational(computation_time, time.time())
+    return psi
+
+
+# I defined A as one part of u and B as the other part. A* V * (B-X) = u
+# A returned is here a vector.
+
+def A(rho, sigma, theta, psi, t):
+    # Good line wrote I keep it in case of
+    # iT = min(range(len(t)), key=lambda i: abs(t[i] - T)) #gives the index of the closest value to T, the horizon.
+    # it = min(range(len(t)), key=lambda i: abs(t[i] - t0))
+
+    # I want psi[ T - t ] which is exactly :
+    # [-1] gives the last value : phi(T). So if i = 0 => psi[-1]
+    # and then it continues like that until psi[0]
+    ans = np.zeros(len(t))
+    for i in range(len(t)):
+        ans[i] = theta + rho * sigma * psi[-i - 1]
+    return ans
+
+
+# A * V * (B - X) = u
+# I need i because the integral (computed with trapeze method) starts at t and finishes at T
+# so in order to begin later, I only take some of the values in t and r. For that, I need i.
+def B(zeta, t, r, i):
+    return zeta * np.exp(- trapeze_int(t[i:], r[i:]))
+
+
+def ZETA(c, t, r, M0, X):
+    rint = trapeze_int(t, r)
+    res = 2 - M0 * np.exp(-2 * rint)
+    # res = ( np.exp(- rint )*M0*x0 - np.exp(-2 * rint)*M0*c  )/ res
+    # res = c - res
+    # I think that second expression uses less approximations.
+    res = (2 * c - M0 * X[0] * np.exp(- rint) ) / res
+    return res
+
+
+# There are two ways to compute the integral. M0 is basically one big integral.
+# Here, I use an approximation with trapeze integration.
+# Let me remind that this method is of degree d'exactitude = 1. True for all polynomials of degree <= 1
+def M0(r, t, kappa, phi, psi, V, rho, sigma, theta):
+    # y is the image of the function we want to integrate
+    # since the integral is linear, we put the whole expression the integral
+    y = np.zeros(len(t))
+    for i in range(len(t)):
+        y[i] = 2 * r[i] + kappa * phi * psi[i] + V[0] * small_psi(psi[i], rho, sigma, theta, kappa)
+    int = trapeze_int(t, y)
+    res = 2 * np.exp(int)
+    return res
+
+
+import differint.differint as df
+# https://arxiv.org/pdf/1912.05303.pdf
+# RL better!
+# not the same parameters as before
+def M0_func_differint(r, t, kappa, phi, alpha, V, rho, sigma, theta):
+    # y is the image of the function we want to integrate
+    # since the integral is linear, we put the whole expression the integral
+    y = np.zeros(len(t))
+    for i in range(len(t)):
+        y[i] = 2 * r[i]
+    int = trapeze_int(t, y)
+    # create the psi
+    int += kappa * phi * df.RL(1, computation_psi, 0, t[-1], 200)
+    int += V[0] * df.RL(1 - alpha, computation_psi, 0, t[-1], 200)
+    res: int = 2 * np.exp(int)
+    return res
+
+
+
+
+
+
+def computation_r(r, N):
+    ans = np.zeros(N)
+    return r + ans
+
+
+def simulation_M(M, i, RHO, SIGMA, THETA,
+                 DELTA, PSI, V, r, W1, W2):
+    # I want PSI[ T - t ] which is exactly :
+    # [-1] gives the last value : phi(T). So if i = 0 => PSI[-1]
+    # and then it continues like that until PSI[0]
+    u1 = RHO * SIGMA * M[i] * V[i] ** (1 / 2) * PSI[-i - 1]
+    u2 = (1 - RHO ** 2) ** (1 / 2) * SIGMA * M[i] * V[i] ** (1 / 2) * PSI[-i - 1]
+    new_M = M[i] + (-2 * r[i] - THETA ** 2 * V[i]) * M[i] * DELTA + \
+            (2 * THETA * V[i] ** (1 / 2) * u1 + u1 ** 2 / M[i]) * DELTA + \
+            u1 * DELTA ** (1 / 2) * W1[i] + \
+            u2 * DELTA ** (1 / 2) * W2[i]
+    return new_M
+
+
+def simulation_X(X, u, V, i, THETA, DELTA, r, W1):
+    #THETA = 0
+    new_X = X[i] + (r[i] * X[i] + THETA * np.sqrt(V[i]) * u[i]) * DELTA + u[i] * np.sqrt(DELTA) * W1[i]
+    return new_X
+
+
+def simulation_S(S, V, i, THETA, DELTA, r, W1):
+    #THETA = 0
+    new_S = S[i] + S[i] * (r[i] + THETA * V[i]) * DELTA +\
+            S[i] * np.sqrt(DELTA * V[i]) * W1[i]
+    return new_S
+
+
+def simulation_V(V_tilda, i, RHO, SIGMA, PHI, KAPPA,
+                 DELTA, W1, W2, THETA):
+    #THETA = 0
+    #V tilda is the true volatility, and V is the positive one.
+    V = max(0, V_tilda[i])
+    mvmt_brown_1 = RHO * (np.sqrt(DELTA) * W1[i] +
+                          2 * THETA * np.sqrt(V) * DELTA)
+    mvmt_brown_2 = np.sqrt(1 - RHO** 2) * np.sqrt(DELTA) * W2[i]
+    new_V_tilda = V_tilda[i] + \
+                  (KAPPA * PHI - LAMBDA(RHO, SIGMA, THETA, KAPPA) * V) * DELTA + \
+                  (mvmt_brown_1 + mvmt_brown_2) * SIGMA * np.sqrt(V)
+    new_V = max(0, new_V_tilda)
+    return new_V, new_V_tilda
+
+
+# u = A * V_t **1/2 * (B-X)
+def computation_u(i, A, B, V, X):
+    new_u = A[i] * np.sqrt(V[i]) * (B[i] - X[i])
+    return new_u
+
+
+# definition page 12
+def simulate_var_x_T(t, r, M0, C, X0):
+    rint = trapeze_int(t, r)
+    ans = 2 - np.exp(- 2 * rint) * M0
+    ans = M0 * (C * np.exp(-  rint) - X0)**2 / ans
+    return ans
+\end{Verbatim}
+
+\subsection{Lifted Heston}
+\begin{Verbatim}[fontsize=\tiny]
+
+def lifted_Heston_V(tt, N, r, ALPHA, V0,
+                    RHO, SIGMA, PHI, KAPPA, THETA,
+                    W1, W2):
+    DELTA = tt[1] - tt[0]
+    U = np.zeros(N)  # all U_i begin at 0
+    V = np.zeros(len(tt))
+    V[0] = V0
+
+    # the coefficients
+    c = np.zeros(N)
+    x = np.zeros(N)
+
+    for j in range(N):
+        c[j] = (r ** (1 - ALPHA) - 1) * (r ** ((ALPHA - 1) * (1 + N / 2))) * \
+               (r ** ((1 - ALPHA) * j)) / \
+               scipy.special.gamma(ALPHA) / scipy.special.gamma(2 - ALPHA)
+
+        x[j] = (1 - ALPHA) / (2 - ALPHA) * \
+               (r ** (2 - ALPHA) - 1)  / (r ** (1 - ALPHA) - 1) * \
+               (r ** (j - 1 - N / 2))
+    # case n = 1
+    #c = [1]
+    #x = [0]
+    if all( small_x != 0 for small_x in x):
+        g0 = np.zeros( len(tt) )
+        for j in range(N):
+            g0 += c[j]* ( 1/x[j] - np.exp(-x[j] * tt)/x[j] )
+    else :
+        g0 = np.zeros( len(tt) )
+        for j in range(N):
+            g0 += c[j]* tt
+    g0 *= PHI * KAPPA
+    g0 += V[0]
+
+    #Now we proceed with the process.
+
+
+
+    # I give to the function the old U, which is a vector where every coordinate is one dimension
+    # along the N dimensions. I also have to input a coordinate, which corresponds to the rank of
+    # the time. ( the j in t[j] ). This is for knowing which noise we shall use.
+    def simulation_U(x, j, old_U, old_V,
+                     RHO, KAPPA, SIGMA, DELTA, W1, W2, THETA):
+        # U is of length the number of parameters, N, = length x
+        new_U = np.zeros(len(x))
+        max_old_V = max(0, old_V)
+        Wt = (RHO * np.sqrt(DELTA) * W1[j] +
+              np.sqrt(1 - RHO ** 2) * np.sqrt(DELTA) * W2[j]) + \
+             RHO * 2 * THETA * np.sqrt(max_old_V) * DELTA
+        for i in range(len(x)):
+            new_U[i] = old_U[i] + (- x[i] * old_U[i]
+                       - LAMBDA(RHO, SIGMA, THETA, KAPPA) * max_old_V) * DELTA + \
+                       SIGMA * np.sqrt(max_old_V) * Wt
+        return new_U
+
+    #since V depends at every step on U, which depends on V,
+    # I can't simulate V totaly from the start
+    # like in normal heston.
+    # What I can do however, is do it recursively.
+    def computation_V(g0, j, U, c):
+        new_V = g0[j]
+        for i in range(len(c)):
+            new_V += c[i] * U[i]
+        return new_V
+
+    # U and V defined at the beg. of the function
+    # I start in 1, though at index i I define U[i-1]. That way, I don't redefine V[0]
+    # and I can compute V[-1] inside the loop.
+    for i in range(1,len(tt)):
+        U = simulation_U(x, i-1, U, V[i-1],
+                         RHO, KAPPA, SIGMA, DELTA, W1, W2, THETA)
+        V[i] = max(  computation_V(g0, i, U, c), 0 )
+    return V
+\end{Verbatim}
+
+\subsection{Rough Heston}
+\begin{Verbatim}[fontsize=\tiny]
+def my_sqrt(x):
+    return np.sqrt( np.abs(x))
+
+
+def compute_covariance_matrix(M_PREC, DELTA, ALPHA, RHO):
+    #BIG cov is the total covariance matrix
+    # whereas small cov is the cholensky decomposition, lower tri. of it.
+
+    #dummy
+    BIG_COV = np.array([
+        [DELTA, np.power(DELTA,ALPHA)/math.gamma(ALPHA +1), RHO*DELTA],
+
+        [np.power(DELTA,ALPHA)/math.gamma(ALPHA +1),
+         np.power(DELTA,2*ALPHA-1)/math.gamma(ALPHA)/(2*ALPHA-1),
+         RHO * np.power(DELTA,ALPHA)/math.gamma(ALPHA +1) ],
+
+        [RHO*DELTA, RHO * np.power(DELTA,ALPHA)/math.gamma(ALPHA +1), DELTA]
+    ])
+    #print("BIG : ",BIG_COV)
+    SMALL_COV = np.linalg.cholesky(BIG_COV)
+
+    Bbar  = np.zeros(M_PREC)
+    Btild = np.zeros(M_PREC)
+    WN    = np.zeros(M_PREC)
+    #the random variable :
+        #I create a big matrix, with on every line : N1,N2,N3.
+        # Then every line multiplied by BIG COV gives me Bi_bar, Bi_tilda, Wi
+
+    gaussian = np.random.normal(size = (M_PREC,3) )
+    for i in range( M_PREC ):
+        line_gaussian = gaussian[i, :]
+        new_gaussian  = SMALL_COV.dot(line_gaussian)
+        Bbar[i], Btild[i], WN[i] = new_gaussian[0],new_gaussian[1],new_gaussian[2]
+    return Bbar, Btild, WN
+
+
+#be careful, the position does not correspond to the one on the paper.
+# Here AA[k] corresponds to AA[k+1] in the paper.
+# AA_0 is not written here.
+def constructor_AA(DELTA,ALPHA, length):
+    AA = np.zeros(length)
+    for i in range(length):
+        AA[i] = np.power(DELTA, ALPHA)/ math.gamma(ALPHA +1) * ( np.power(i+1, ALPHA) - np.power(i, ALPHA)    )
+    return AA
+
+#same thing as AA. The coefficients are shifted.
+# bb_0 is not written here
+def constructor_bb(ALPHA, length):
+    ans = np.zeros(length)
+    for i in range(length):
+        ans[i] =  ( np.power(i+1, ALPHA) - np.power(i, ALPHA)    ) / ALPHA
+    return np.power(ans, 1/(ALPHA-1) )
+
+def fct_power_law(ALPHA, x):
+    return np.power(x, ALPHA-1)
+
+# I compute the whole volatility in one go.
+def rough_volatility(HESTON_PARAMS, ALPHA, V, M_PREC,
+                     AA, bb, BBbar, BBtild ):
+    #V the starting value of the volatility.
+    #m_prec is the number of points for precision, it is defined at the beginning of the program.
+    #bb are the b_k^*
+    #BBbar are the B bar
+    #BBtild are the B tild
+    # kernel is the function I want to use
+    KAPPA, PHI, THETA, RHO, SIGMA = HESTON_PARAMS
+    DELTA = 1/M_PREC
+
+
+    ans = np.zeros(M_PREC)
+    ##################
+    first_sum_print = np.zeros(M_PREC)
+    second_sum_print = np.zeros(M_PREC - 1)
+    ##################''''''''''''''''''''''''''''
+    first_sum = np.zeros(M_PREC)
+    second_sum = np.zeros(M_PREC-1)
+
+    ans[0] = V
+
+    for i in range(1,M_PREC): # from V_1 to V_T, last value not taken in range
+        #if i % 1000 == 0:
+            #print("step {} out of {}".format(i, M_PREC))
+        for j in range(i):
+            first_sum[j] = ( KAPPA * PHI + \
+                                (- LAMBDA(RHO, SIGMA, THETA, KAPPA) + 2 * SIGMA * RHO * THETA ) * \
+                                ans[j]
+                             )* AA[i - j - 1] #the -1 is because of the shift in the definition
+        for k in range(2,i+1):
+            # the -1 in bb is because of the shift in the definition
+            second_sum[k-2] = 1 / math.gamma(ALPHA) * SIGMA* my_sqrt(ans[ i - k ] ) * \
+            fct_power_law( ALPHA = ALPHA, x = bb[k-1] * DELTA ) * \
+            BBbar[i - k]
+
+        third_sum = SIGMA * my_sqrt(ans[i - 1]) * BBtild[i-1]
+        #print("FIRST : ", first_sum)
+        #print("SECOND : ", second_sum)
+        #print("THIRD : ", third_sum)
+        ans[i] = np.abs(V + np.sum(first_sum) + np.sum(second_sum) + third_sum)
+
+    return ans
+\end{Verbatim}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Pricing}
+
+\subsection{Pricing with closed form Heston}
+\begin{Verbatim}[fontsize=\tiny]
+def Int_Function_closed_heston(xi, KAPPA, THETA, SIGMA, RHO, v0, r, T, s0, K, typ):
+    return (cmath.e ** (-1j * xi * np.log(K)) * characteristic_function_closed_heston(xi, KAPPA, THETA, SIGMA, RHO, v0,
+                                                                                      r, T, s0, typ) / (1j * xi)).real
+\end{Verbatim}
+
+\begin{Verbatim}[fontsize=\tiny]
+def characteristic_function_closed_heston(xi, KAPPA, THETA, SIGMA, RHO, v0, R, T, s0, typ):
+    if typ == 1:
+        w = 1.
+        b = KAPPA - RHO * SIGMA
+    else:
+        w = -1.
+        b = KAPPA
+    ixi = 1j * xi
+    d = cmath.sqrt((RHO * SIGMA * ixi - b) * (RHO * SIGMA * ixi - b) - SIGMA * SIGMA * (w * ixi - xi * xi))
+    g = (b - RHO * SIGMA * ixi - d) / (b - RHO * SIGMA * ixi + d)
+    ee = cmath.e ** (-d * T)
+    C = R * ixi * T + KAPPA * THETA / (SIGMA * SIGMA) * (
+            (b - RHO * SIGMA * ixi - d) * T - 2. * cmath.log((1.0 - g * ee) / (1. - g)))
+    D = ((b - RHO * SIGMA * ixi - d) / (SIGMA * SIGMA)) * (1. - ee) / (1. - g * ee)
+    return cmath.e ** (C + D * v0 + ixi * np.log(s0))
+\end{Verbatim}
+
+\begin{Verbatim}[fontsize=\tiny]
+def pricing_using_closed_form_heston(hestonParams, R, T, s0, k, silent=False):
+    KAPPA, THETA, SIGMA, RHO, v0 = hestonParams
+    low, up = 0, 40
+    if not silent:
+        # test for the domain of integration
+        image_tt = np.linspace(0.0001, up, 200)
+        image1 = evaluate_function(
+            lambda xi: Int_Function_closed_heston(xi, KAPPA, THETA, SIGMA, RHO, v0, R, T, s0, np.exp(k), 1)
+            , image_tt)
+        image2 = evaluate_function(
+            lambda xi: Int_Function_closed_heston(xi, KAPPA, THETA, SIGMA, RHO, v0, R, T, s0, np.exp(k), 2)
+            , image_tt)
+        plot_graph(image_tt, image1, [
+            "Plot of the integrand for pricing under closed form, $ \\Pi 1 $, in order to see if the domain is good.",
+            "Plot of the integrand for pricing under closed form, $ \\Pi 2$, in order to see if the domain is good."],
+                   ["real line", "integrand", "real line", "integrand"],
+                   parameters=[low, up, k, R, T, KAPPA, THETA, SIGMA, RHO, v0],
+                   name_parameters=["lower bound integral", "upper bound integral", "k log strike price", "R rate", "T",
+                                    "KAPPA", "THETA", "SIGMA", "RHO", "v0"],
+                   name_save_file="integrand_pricing_closed1&2",
+                   data2_x=image_tt, data2_y=image2)
+
+    a = 0.5 + (1. / np.pi) * \
+        scipy.integrate.quad(
+            lambda xi: Int_Function_closed_heston(xi, KAPPA, THETA, SIGMA, RHO, v0, R, T, s0, np.exp(k), 1), 0., up)[0]
+    a *= s0
+    b = 0.5 + (1. / np.pi) * \
+        scipy.integrate.quad(
+            lambda xi: Int_Function_closed_heston(xi, KAPPA, THETA, SIGMA, RHO, v0, R, T, s0, np.exp(k), 2), 0., up)[0]
+    b *= np.exp(k) * np.exp(-R * T)
+    return a - b
+\end{Verbatim}
+
+\subsection{Pricing with empirical estimator}
+
+\begin{Verbatim}[fontsize=\tiny]
+# S is given as the realisation, the conversion to a payoff is done inside the function
+# this function computes f(X) bar.
+def empirical_price_option(S, k, T, r):
+    # find the index (among the lines) where the time is the closest to T.
+    iT = min(range(len(S['time'])), key=lambda i: abs(S['time'][i] - T))
+    # take back the line where the T corresponds to, and only keep the values (without the first column where the times are stocked.
+    real_s = list(S.iloc[iT])[1:]
+    n = len(real_s)
+    payoff = np.zeros(n)
+    for i in range(n):
+        payoff[i] = function_vanilla_option_output(real_s[i], k)
+    return sum(payoff) / n * np.exp(- r * T) 
+
+\end{Verbatim}
+
+where the function for vanilla option output :
+
+\begin{Verbatim}[fontsize=\tiny]
+def function_vanilla_option_output(x, k):
+    return max(0, x -  np.exp(k))
+\end{Verbatim}
+
+\subsection{Useful functions}
+In order to not write all the time the same loop functions in order to plot the frontiers, here are two useful functions : 
+
+\begin{Verbatim}[fontsize=\tiny]
+def pricing_vector(fct_pricing, k, time, **kwargs):
+    nb_of_k = len(k)
+    pricing_vect = np.zeros(nb_of_k)
+    for j in range(nb_of_k):
+        pricing_vect[j] = fct_pricing(k=k[j], T=time, **kwargs)
+    return pricing_vect
+
+
+# this function makes it easier to create a cover of k/T; for that, I give the times and the k's I want to know the value,
+# if I use an empirical method, the times have to match with the one from the matrix of realisations.
+def pricing_cover(fct_pricing, k, tt_pricing, **kwargs):
+    ## lots_of_S are the realisation of the asset (the forwards).
+    # On each line, one sees the time and then all the realisation for a given time.
+    nb_of_times = len(tt_pricing)
+    nb_of_k = len(k)
+    pricing_grid = np.zeros((nb_of_times, nb_of_k))
+    for i in range(nb_of_times):
+        pricing_grid[i, :] = pricing_vector(fct_pricing, k, tt_pricing[i], **kwargs)
+        # if i % 50 == 0:
+        print(" in the process of pricing cover, it is step {} out of {}.".format(i + 1, nb_of_times))
+    return pricing_grid
+\end{Verbatim}
+
+
+\subsection{FFT}
+
+
+\begin{Verbatim}[fontsize=\tiny]
+# input the grid freq, on which the charac function has been computed. Remember :
+# charac function is evaluated on xi - (alpha + 1)*i, and one wants psi(xi)
+# sum up : the charac function is evaluated on the grid freq shifted, unlike psi.
+def compute_function_psi_car_magan(xi, hestonParams, R, ALPHA_DAMPING, T, X0):
+    KAPPA, THETA, SIGMA, RHO, v0 = hestonParams
+    return cmath.e ** (- R * T) * \
+           characteristic_function_closed_heston(
+               xi - (ALPHA_DAMPING + 1) * 1j, KAPPA, THETA, SIGMA, RHO, v0, R, T, X0, 1
+           ) / \
+           (ALPHA_DAMPING + 1j * xi) / (1 + ALPHA_DAMPING + 1j * xi)
+
+
+def pricing_method_car_madan(hestonParams, R, T, X0, ALPHA_DAMPING, XI, ETA, silent=False):
+    # the following is the small transformation of the function psi, in order to simply
+    # call this vector inside the fft transformation. I want to make the whole argument
+    # in the sum as a function, including the scalers
+
+    # no need to give k, because giving the XI fixes the k's.
+    # choice is R scaler
+    PSI_NEW_VECT = np.zeros(len(XI), dtype=np.complex)
+    for j in range(len(XI)):
+        PSI_NEW_VECT[j] = np.exp(1j * math.pi / ETA * XI[j]) * compute_function_psi_car_magan(XI[j], hestonParams, R,
+                                                                                              ALPHA_DAMPING, T,
+                                                                                              X0) * ETA / 3
+        if j % 2 == 1 and j != len(XI) - 1:
+            PSI_NEW_VECT[j] *= 4
+        elif j % 2 == 0 and j != 0:
+            PSI_NEW_VECT[j] *= 2
+        if not silent and j % 1000 == 0:
+            print("step {} out of total {} for calls fft".format(j + 1, len(XI) + 1))
+    pricing = np.fft.fft(PSI_NEW_VECT)
+    for j in range(len(pricing)):
+        pricing[j] *= np.exp(- ALPHA_DAMPING * (- math.pi / ETA +
+                                                2 * j * math.pi / (len(pricing) * ETA))) / math.pi
+    # pricing = np.fft.fftshift(pricing)
+    return pricing.real
+    
+\end{Verbatim}
+
+
+\subsection{Black and Scholes}
+\begin{Verbatim}[fontsize=\tiny]
+def phi(x):
+    ## Gaussian density
+    return np.exp(-x * x / 2.) / np.sqrt(2 * np.pi)
+
+
+#### Black Sholes Vega
+def BlackScholesVegaCore(DF, F, X, T, SIGMA):
+    vsqrt = SIGMA * np.sqrt(T)
+    d1 = (np.log(F / X) + (vsqrt * vsqrt / 2.)) / vsqrt
+    return F * phi(d1) * np.sqrt(T) / DF
+
+
+#### Black Sholes Function
+def BlackScholesCore(CallPutFlag, DF, F, X, T, SIGMA):
+    ## DF: discount factor
+    ## F: Forward F c'est S_0
+    ## X: strike
+    vsqrt = SIGMA * np.sqrt(T)
+    d1 = (np.log(F / X) + (vsqrt * vsqrt / 2.)) / vsqrt
+    d2 = d1 - vsqrt
+    if CallPutFlag:
+        return DF * (F * scipy.stats.norm.cdf(d1) - X * scipy.stats.norm.cdf(d2))
+    else:
+        return DF * (X * scipy.stats.norm.cdf(-d2) - F * scipy.stats.norm.cdf(-d1))
+
+
+##  Black-Scholes Pricing Function
+def BlackScholes(CallPutFlag, S, k, T, R, d, SIGMA):
+    K = np.exp(k)
+    ## X: strike price, exp(k)
+    ## S c'est S_0
+    ## R, d: continuous interest rate and dividend
+    return BlackScholesCore(CallPutFlag, np.exp(-R * T), np.exp((R - d) * T) * S, K, T, SIGMA)
+
+
+def implied_volatility_blackscholes(k, s0, T, R, SIGMA):
+    ## s0 starting point of the S's,
+    ## S realisation of the S_T
+    myPrice = BlackScholes(True, s0, k, T, R, 0, SIGMA)
+
+    # Bisection algorithm when the Lee-Li algorithm breaks down
+    def smileMin(vol, *args):
+        k, s0, T, r, price = args
+        return price - BlackScholes(True, s0, k, T, r, 0., vol)
+
+    vMin = 0.000001
+    vMax = 10.
+    # print("k,",k)
+    # print("vmin, ",smileMin(vMin, np.exp(k), s0, T, R, myPrice)   )
+    # print("vmax, ",smileMin(vMax, np.exp(k), s0, T, R, myPrice)   )
+    # in order to find the implied volatility, one has to find the value at which smileMin crosses zero.
+    return scipy.optimize.bisect(smileMin, vMin, vMax, args=(k, s0, T, R, myPrice), xtol=1e-20, rtol=1e-15,
+                                 full_output=False, disp=True)
+                                 
+\end{Verbatim}
+
+\section{Implied Volatility}
+
+\subsection{Implied Volatility}
+\begin{Verbatim}[fontsize=\tiny]
+# one can't really ket higher then k = 2.5
+def implied_volatility_closed_form_heston(hestonParams, R, T, s0, k):
+    myPrice = pricing_using_closed_form_heston(hestonParams, R, T, s0, k, silent=True)
+
+    # Bisection algorithm when the Lee-Li algorithm breaks down
+    def smileMin(vol, *args):
+        k, s0, T, r, price = args
+        return price - BlackScholes(True, s0, k, T, r, 0., vol)
+
+    vMin = 0.0000001
+    vMax = 10.
+    # print("k,",k)
+    # print("vmin, ",smileMin(vMin, k, s0, T, R, myPrice)   )
+    # print("vmax, ",smileMin(vMax, k, s0, T, R, myPrice)   )
+    # in order to find the implied volatility, one has to find the value at which smileMin crosses zero.
+    return scipy.optimize.bisect(smileMin, vMin, vMax, args=(k, s0, T, R, myPrice), xtol=1e-20, rtol=1e-15,
+                                 full_output=False, disp=True)
+
+
+def implied_volatility_empirical_heston(S, k, s0, T, R):
+    ## s0 starting point of the S's,
+    ## S realisation of the S_T
+    myPrice = empirical_price_option(S, k, T, R)
+
+    # Bisection algorithm when the Lee-Li algorithm breaks down
+    def smileMin(vol, *args):
+        k, s0, T, r, price = args
+        return price - BlackScholes(True, s0, k, T, r, 0., vol)
+
+    vMin = 0.000001
+    vMax = 10.
+    print("k,",k)
+    print("vmin, ",smileMin(vMin, k, s0, T, R, myPrice)   )
+    print("vmax, ",smileMin(vMax, k, s0, T, R, myPrice)   )
+    # in order to find the implied volatility, one has to find the value at which smileMin crosses zero.
+    return scipy.optimize.bisect(smileMin, vMin, vMax, args=(k, s0, T, R, myPrice), xtol=1e-20, rtol=1e-15,
+                                 full_output=False, disp=True)
+\end{Verbatim}
+
+\subsection{ IV with Newton }
+\label{appendix_code:newton}
+\begin{Verbatim}[fontsize=\tiny]
+def newton_IV_closed_form_heston(CallPutFlag, s0, k, T, R, d, hestonParams, silent = False):
+    experimented_price = pricing_using_closed_form_heston(hestonParams, R, T, s0, k, silent=True)
+
+    fx = lambda varSIGMA: BlackScholes(CallPutFlag, s0, k, T, R, d, varSIGMA) - experimented_price
+    # invariant of call or put
+    K = np.exp(k)
+    dfx = lambda varSIGMA: BlackScholesVegaCore(np.exp(-R * T), np.exp((R - d) * T) * s0, K, T, varSIGMA)
+    if not silent :
+        tt = np.linspace(0.00001, 5, 100)
+        y = evaluate_function(fx, tt)
+        plot_graph(tt, y,  ["Forward price as a function of sigma for Black and Scholes"],
+           ["$\sigma$", "Price"])
+        y = evaluate_function(dfx, tt)
+        plot_graph(tt, y, ["Vega, derivative of the asset wrt to the volatility sigma for Black and Scholes"],
+           ["$\sigma$", "Price"])
+    # according to Brenner and Subrahmanyam :
+    # sigma0 = np.sqrt(2 * np.pi / T ) * fx(SIGMA) / s0
+    sigma01 = np.sqrt( 2 * np.pi / T) * experimented_price / s0
+    sigma0 = 0.4
+    IV = newtons_method(fx, dfx, sigma0)
+    return IV, sigma01
+\end{Verbatim}
+
+Where 
+\begin{verbatim} 
+newtons_method  
+\end{verbatim} 
+is defined in generic functions (in my libraries).
+
+\section{Neural Networks}
+
+\subsection{Split K-Fold Continuous}
+\begin{Verbatim}[fontsize=\tiny]
+def split_kfold_continuous(X = None ,y = None , filepath = None):
+    '''
+    Splits dataframe into N train & N test sets stratified by
+    target variable
+    Returns 5 train and 5 test sets
+    Whole dataset is represented in cumulative test sets
+    Test sets do not overlap
+    Arguments:
+        - str(target column name) # I change it for having it always the first column as default.
+        - str(dataset location path)
+    Usage example:
+        tr1, tr2, tr3, tr4, tr5, te1, te2, te3, te4, te5 =
+            split_kfold_continuous('Target', '/folder/data.csv')
+    '''
+
+    import pandas as pd
+    import numpy as np
+    from sklearn.model_selection import StratifiedKFold
+
+    if filepath is not None :
+      data = pd.read_csv(filepath)
+    else : 
+      data = pd.concat([X, y], axis=1)
+      
+    bins = np.linspace(min(y), max(y), len(y)//10 )
+    # between 0 and 1 (because my data is scaled
+    # in the range of [0,1]) put values in len(y)//10, such that on average, every bin contains 10% of the data
+    y_binned = np.digitize(y, bins)
+
+    skf = StratifiedKFold(n_splits=5, shuffle=True)
+    # for 5 splits
+    # create empty lists to store lists of indexes
+    # (for 5 folds each list will store 5 lists
+    # of indexes for train and test sets)
+
+    tr_ix = []
+    te_ix = []
+    # append empty lists with lists
+    # of indexes for the split datasets
+
+    for train_index, test_index in skf.split(X, y_binned):
+        # extract data from original dataset (the one we want to split)
+        # according to saved indexes of splitted datasets and
+        # store new datasets in dictionaries
+        tr_ix.append(train_index),
+        te_ix.append(test_index)
+
+    res = []
+    for i in range(len(tr_ix)) :
+        res.append( (tr_ix[i],te_ix[i]) )
+    return res
+\end{Verbatim}
+
+
+
+\subsection{Neural Network's class}
+\begin{Verbatim}[fontsize=\tiny]
+#the class of NN
+class NeuralNet(nn.Module):
+  def __init__(self, input_size, hidden_size, num_classes, p=0):
+      super(NeuralNet, self).__init__()
+      self.fc1 = nn.Linear(input_size, hidden_size, bias =False)
+      self.fc2 = nn.Linear(hidden_size, hidden_size, bias =True)
+      self.fc3 = nn.Linear(hidden_size, hidden_size, bias =True)
+      self.fc4 = nn.Linear(hidden_size, num_classes, bias =False)
+      self.dropout = nn.Dropout(p=p)
+
+  def forward(self, x):
+      out = F.relu(self.fc1(x))
+      out = F.relu(self.dropout(self.fc2(out)))
+      out = F.relu(self.dropout(self.fc3(out)))
+      out = self.fc4(out)
+      return out
+\end{Verbatim}
+
+
+
+
+
+
+%\begin{Verbatim}[fontsize=\tiny]
+%\end{Verbatim}

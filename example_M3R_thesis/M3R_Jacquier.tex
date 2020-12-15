@@ -1,0 +1,63 @@
+\documentclass[11pt,a4paper,twoside,openright]{book}
+ 
+\newcommand{\reporttitle}{Classical Methods in Numerical Analysis Applied to Mathematical Finance: Normal, Lifted, Rough Heston and Pricing Call Options.}
+\newcommand{\reportauthor}{Niels D. C. CARIOU KOTLAREK}
+\newcommand{\course}{Mean-Variance Porfolio Selection under Volterra Heston model by HAN and WONG}
+\newcommand{\professor}{Antoine J. JACQUIER}
+\newcommand{\cid}{01831430}
+% include file with configuration.
+
+
+\input{addition_part/configuration}
+                                                                  
+
+\begin{document}
+\frontmatter
+\pagestyle{front}
+\input{addition_part/page_de_garde}
+\thispagestyle{empty}%pour la page de garde toute blanche
+
+\input{addition_part/resume}                                                                
+\input{addition_part/merci}
+
+
+
+
+\shorttableofcontents{Content}{0}%sommaire avec uniquement les chapitres
+\addcontentsline{toc}{chapter}{Content}%ajout du sommaire dans le sommaire!
+
+
+\mainmatter
+\pagestyle{main}
+
+\input{addition_part/text/theory.tex}
+\input{addition_part/text/numerical_studies.tex}
+\input{addition_part/text/option_pricing.tex}
+
+
+\cleardoublepage% le corps du document est terminé
+
+\appendix
+\pagestyle{back}
+\input{addition_part/annexe}
+\input{addition_part/annexe_code}
+
+
+
+
+\backmatter
+
+\printbibliography
+\nocite{*}
+
+\addcontentsline{toc}{chapter}{References}
+
+%\listoffigures
+%\addcontentsline{toc}{chapter}{Table des figures}
+
+\tableofcontents%table des matières plus complète
+\addcontentsline{toc}{chapter}{Table of content}%ajout de la table des matières dans la table des matières !
+
+
+
+\end{document}

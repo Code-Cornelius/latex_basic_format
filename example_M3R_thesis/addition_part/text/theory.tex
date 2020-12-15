@@ -1,0 +1,124 @@
+\chapter{Introduction, maths-finance}
+
+\section{Financial topics}
+
+
+
+
+\subsection{How to model the markets and Hurst Coefficient}
+
+Finance is related to the study of money, and in particular, mathematical finance to the models used in finance. One of the greatest question is "How can one model the markets?". Models are useful because they allow their users to work in a given realm, and deduce useful results. At the same time, one should be careful of the assumption of the chosen model, since it introduces what's is also coined as the Knightian uncertainty.
+
+One of the first developed model for markets has been given under the assumption of a log-normal model for assets. This led to the Black and Scholes (B-S) model for pricing basic options as call options and put options. More details can be found in the appendix \ref{BSformula}. One of the limitations of the B-S model is the assumption of a constant volatility of the asset. This assumption is not observed on the market. We observe on the contrary that B-S overprice options ATM and underprice far OTM and ITM.
+
+For this reason, a major improvement has been made by modelling the the volatility as a diffusion process. The resulting models are the stochastic volatility models. Having a non-constant volatility is empirically confirmed by the unpredictable nature of the stock price's volatility. Those models can recover empirical observations: for example volatility smile and skew. 
+
+Additionally, we add to it a stochastic process, which is correlated, and which represents the value of the asset. 
+
+All those small differences from the original log-normal model lead to a more complex system of equations, computationally expensive, but way more accurate to describe the reality of the financial markets. One of the most popular stochastic volatility model is the Heston model, for which we have really nice results, by part because it is markovian.
+
+However, the latest research in the field has shown that rough volatility models capture even better the dynamic of the market. A rough model is a model including some memory with respect to the path. In other words, it loses markovianity. In the following, we define what a rough model is.
+
+
+\begin{definition}[Hurst Coefficient]
+The Hurst coefficient is defined as an index of dependence, an index of long-term memory. It lies in $[0,1]$. For a model, a Hurst parameter lying in $]0.5,1]$ means there is a long-term positive autocorrelation. On the contrary, a Hurst coefficient of $[0,0.5[$ indicates a long-term negative autocorrelation. 
+
+A Hurst coefficient of exactly 0.5 is the sign that a time-series is  completely uncorrelated. 
+
+For example, a Brownian motion has a parameter of exactly a half. Meanwhile, a "persistent" time-series has a coefficient bigger than $0.5$, an "anti-persistent" time-series has a coefficient lower than $0.5$. 
+\end{definition}
+
+\begin{remarque} 
+Hereinafter, we shall use $H$ or $\alpha$ equivalently, where $H$ is the Hurst coefficient, and $\alpha := H + \frac 1 2$.
+\end{remarque}
+
+
+Finally, the Hurst parameter of the model is closely related to its Hölder-continuity. One can prove that a model using a coefficient of $H$, also has a regularity of $H$. This gives rational to not having a Hurst parameter outside $[0,1]$, as Hölder-continuity is not defined for a negative index, and when the index is bigger than 1, the path is constant (this can be empirically verified using the later described rough models).
+
+In \cite{HanWong}, Han and Wong define rough stochastic path as having a Hurst parameter of less than a half. 
+
+As we said earlier, rough volatility models capture better the dynamic of the markets. In particular, it captures the dynamics of historical and implied volatility. Latest research in the field suggest a Hurst parameter of $0.1$, while standard Heston has a Hurst parameter of $0.5$.
+
+The aim of \cite{HanWong} was to prove that there exists an optimal solution to the mean variance portfolio problem in continuous time, and it leads to better payoff under a rough model.
+
+
+\begin{definition}[Volatility]
+Volatility is a measure of the risk of an asset. Being able to capture its dynamics by the models is a crucial part of financial mathematics. Related to it, there is the implied volatility concept which is defined in chapter 3.
+\end{definition}
+
+It is interesting to note that some observable behaviours of the implied volatility are only visible under rougher models. As it is written \cite{HanWong}:
+
+\textit{Rough volatility models also better capture the term structure of an implied volatility surface, especially for the explosion of at-the-money (ATM) skew when maturity goes to zero. [...] Empirical evidence shows that the ATM skew explodes when $T-t =: \tau \to 0 $. However, conventional volatility models such as the Heston model generate a constant ATM skew for a small $\tau$. [...] Rough volatility models can fit the explosion remarkably well by simply adjusting the H.}
+
+In particular, models are usually interested in mimicking the usually observed volatility smile.
+
+\begin{definition}[Volatility Smile]
+A few dozen years ago, traders thought that the strike price, and the maturity don't impact the volatility of an asset. However, we have been observing\footnote{Historically, much more ever since the crash of 1987.} a strong negative skew of the implied volatility. Black and Scholes prices are lower than the ones visible on the market, for very low and very high strike prices. For that reason, we tend to observe a parabolic shape looking like a smile on the implied volatility curve. Also, the volatility smile indicates the existence of fat-tail for the asset's price and hence leading to higher prices for in and out of the money options.
+\end{definition}
+
+When the shape is only one sided, one speaks about volatility smirk.
+
+Lastly, it is worth noting that mathematically speaking, a negative skew means that forecasted prices for contracts tend to move down over time. Academics accepted to refer to the increase of price as the risk premium. The interest of \cite{HanWong} is to include this quantity into the classical Heston equations, as well as to include them in rough Heston equations.
+
+
+
+
+\subsection{Pricing and time-value}
+
+
+\begin{definition}[Moneyness]
+Moneyness is a state for an option. It is defined for every time until maturity. 
+
+It can either be, IN the money, AT the money and OUT of the money, which corresponds respectively to the fact that this same option is worth money, exactly on the boundary of being worth something, and being worth nothing. 
+
+Concretely, it represents the bias at a certain time for final earnings. If an option is in the money, it is more likely to give a positive earning at the end.  
+\end{definition}
+
+\begin{definition}[Time Value]
+Time Value represents how much premium someone has to pay to get a longer maturity for the same contract. 
+\end{definition}
+
+\begin{definition}[Time Decay]
+Time Decay embodies the decay of the time value. As an option approaches its maturity, its value should drop independently of the other parameters. 
+
+If one defines the intrinsic value of an option as being the current pay-off of an option, then:
+$$\text{extrinsic value } := \text{ time decay } =  \text{ price of the option } - \text{ intrinsic value } $$
+
+Then one could define the time decay as being the extrinsic value.
+\end{definition}
+
+Also, there is a relation between time decay and moneyness. Since an option in the money is more likely to give profit as the profit is already built, the time decay is reduced. 
+
+On the other side, an option out of the money is sensible to time decay: the less time left to build profit, the less valuable the contract is. 
+
+Finally, at the money, the premium (the extrinsic value) is mainly the time value.
+
+
+
+
+
+
+
+
+
+\section{Mathematical topics}
+
+Working on that project, I learnt about many different mathematical tools, including Ito's integral, Brownian Motion and Martingales, Kernels, Ito's lemma, Girsanov Theorem and many others. For the sake of completeness, I include here a few references: two books which helped me grasp stochastic calculus and SDE's concept enough for doing my researches. Those are \cite{mikosch} and \cite{oksendal}. Also, reading \cite{Opti_Luen} was enlightening as concerns quadratic programming, as I only studied linear programming in second year.  
+
+Also, let me give a simple insight on the mean-variance portfolio theory.
+
+\textbf{John C. Bogle:}
+\textit{"The fundamental decision of investing is the allocation of your assets: How much should you own in stock? How much should you own in bonds? How much should you own in cash reserves? That decision accounts for an astonishing 94$\%$ of the difference in total returns achieved by institutional investors. There is no reason to believe that the same relationship does not hold for individual investors."}
+
+\begin{definition}[Mean-Variance portfolio]
+Mean-variance analysis is the process of weighing risk, expressed as variance, against expected return. The basic idea was introduced by Markowitz in 1952 (for which he was awarded the Nobel Price of economics), and relies on the idea that at equilibrium of the market, all that matters is the risk one is ready to take (this view was introduced by Mr. Bogle). The interesting part of \cite{HanWong} is the study of the mean-variance portfolio in continuous time, and under a rougher model than usually considered. For that reason, one of the most important plot for that theory is the efficient frontier, where one plots the relationship between the variance with respect to the outcome of a portfolio.
+\end{definition}
+
+
+
+
+\label{subsection:itoslemma}
+
+
+
+
