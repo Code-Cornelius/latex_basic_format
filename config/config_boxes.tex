@@ -144,12 +144,12 @@
         colback=white!95!viol, 
         colbacktitle=white,
         coltitle=viol, 
-        before={\vspace{0.1cm}}, 
-        after={\vspace{0.8cm}},      
-        attach boxed title to top left={xshift=-.23\linewidth, yshift= -11 mm}, % xshift, how much you shift title in comparison to the box
-        minipage boxed title=.155\linewidth,
+        before={\vspace{0.1cm}}, % space before
+        after={\vspace{0.8cm}},  % after the box
+        attach boxed title to top left={xshift=-.2\linewidth, yshift= -11 mm}, % xshift, how much you shift title in comparison to the box
+        minipage boxed title=.13\linewidth, % this thing is how far the underline for proof is going
         after upper={\hfill$\qed$},
-        left skip={.19\linewidth}, % this changes how far you put the title
+        left skip={.14\linewidth}, % this changes how far you put the box to the right side
         overlay unbroken ={
             \draw[viol][thick] (title.south west)--(title.south east);
             \draw[viol][thick] ([xshift=3.5mm]frame.north west)|-([xshift=15mm]frame.south west);},
