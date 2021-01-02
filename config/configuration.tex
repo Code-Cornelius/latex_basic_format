@@ -118,12 +118,15 @@
 
 
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%% Maths Symbols %%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 %declare operator%https://tex.stackexchange.com/questions/67506/newcommand-vs-declaremathoperator
+% diff * and no star: https://tex.stackexchange.com/questions/1050/whats-the-difference-between-newcommand-and-newcommand
+% for allowing subscript under the operator use \DeclareMathOperator* instead of \DeclareMathOperator
 
 %\newcommand{•}{•}
 %\renewcommand{•}{•}
@@ -132,26 +135,27 @@
 
 
 %---- Ensemles : entiers, reels, complexes... ----
-\newcommand{\N}{\mathbb{N}_{\geq 0}}
-\newcommand{\Z}{\mathbb{Z}}
-\newcommand{\Q}{\mathbb{Q}}
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\C}{\mathbb{C}}
-\newcommand{\Part}{\mathcal{P}}
+\newcommand*{\N}{\mathbb{N}_{\geq 0}}
+\newcommand*{\Z}{\mathbb{Z}}
+\newcommand*{\Q}{\mathbb{Q}}
+\newcommand*{\R}{\mathbb{R}}
+\newcommand*{\C}{\mathbb{C}}
+\newcommand*{\Part}{\mathcal{P}}
 
-\newcommand{\abs}[1]{\lvert #1\rvert} 
-\newcommand{\norm}[1]{\lVert #1\rVert}
-\newcommand{\braket}[1]{\left\langle #1 \right\rvert}
+\newcommand*{\abs}[1]{\lvert #1\rvert}
+\newcommand*{\norm}[1]{\lVert #1\rVert}
+\newcommand*{\anglebrackets}[1]{\left\langle #1 \right\rangle}
+\newcommand*{\curlybrackets}[1]{\left \{ #1 \right \}}
 \DeclareMathOperator{\MSE}{MSE}
 \DeclareMathOperator{\MISE}{MISE}
-\DeclareMathOperator{\sign}{Sign} 
+\DeclareMathOperator{\sign}{Sign}
 
 %\newcommand{\systeme}[1][2]{ \left\{ \begin{array}{#1}#2\end{array} \right. }}
 
 \newcommand{\Tau}{\mathcal{T}} % big tau
 
 
-\newcommand{\Mat}{\mathrm{Mat}}
+\newcommand*{\Mat}{\mathrm{Mat}}
 \DeclareMathOperator{\fix}{fix}
 \DeclareMathOperator{\End}{End}        %Endomorphismes
 \DeclareMathOperator{\Hom}{Hom}
@@ -160,19 +164,19 @@
 \DeclareMathOperator{\im}{Im}
 \DeclareMathOperator{\tr}{tr}
 \DeclareMathOperator{\Tr}{Tr}
-\newcommand{\Bilin}{\mathrm{Bilin}}
-\newcommand{\Vect}{\mathrm{Vect}}
-\newcommand{\Ker}{\mathop{\mathrm{Ker}}\nolimits}
-\newcommand{\rg}{\mathop{\mathrm{rg}}\nolimits}
-\newcommand{\Sp}{\mathsf{Sp}}
-\newcommand{\dx}{\partial_x}                    
-\newcommand{\dy}{\partial_y}
+\newcommand*{\Bilin}{\mathrm{Bilin}}
+\newcommand*{\Vect}{\mathrm{Vect}}
+\newcommand*{\Ker}{\mathop{\mathrm{Ker}}\nolimits}
+\newcommand*{\rg}{\mathop{\mathrm{rg}}\nolimits}
+\newcommand*{\Sp}{\mathsf{Sp}}
+\newcommand*{\dx}{\partial_x}
+\newcommand*{\dy}{\partial_y}
 
 
 %fonction charactéristique
 \DeclareMathOperator{\11charac}{\mathds{1}}
 
-%arg max and min 
+%arg max and min
 \DeclareMathOperator*{\argmax}{\arg\!\max}
 \DeclareMathOperator*{\argmin}{\arg\!\min}
 
@@ -185,15 +189,15 @@
 
 
 %---- Opérateurs utiles ----
-
+% number theory dividing side 6 is divisible 3
 \newcommand*\divise{\mathrel{\mid}}
 \renewcommand{\bigoplus}{\mathop{\hbox{\large $\oplus$}}}
 \newcommand*{\Bigoplus}{\mathop{\hbox{\Large $\oplus$}}}
 
-\DeclareMathOperator{\Non}{non} 
+\DeclareMathOperator{\Non}{non}
 
-\newcommand{\pgcd}{\text{pgcd}}
-\newcommand{\ppcm}{\text{ppcm}}
+\newcommand*{\pgcd}{\text{pgcd}}
+\newcommand*{\ppcm}{\text{ppcm}}
 \DeclareMathOperator*{\Card}{Card}
 \DeclareMathOperator*{\supp}{supp}
 
@@ -210,7 +214,7 @@
        }%
      }%
    }%
-} 
+}
 
 
 \newcommand*\mean[1]{%
@@ -225,7 +229,7 @@
        }%
      }%
    }%
-} 
+}
 
 
 
@@ -250,9 +254,9 @@
 
 
 %---- Démonstrations ----
-\newcommand{\sensdirect}{\par\smallbreak\mbox{$(\implies)$}\xspace}
-\newcommand{\sensindirect}{\par\smallbreak\mbox{$(\impliedby)$}\xspace}
-\newcommand{\implication}[2]{\par\smallbreak\mbox{(\romannumeral#1)$\implies$(\romannumeral#2)}}
+\newcommand*{\sensdirect}{\par\smallbreak\mbox{$(\implies)$}\xspace}
+\newcommand*{\sensindirect}{\par\smallbreak\mbox{$(\impliedby)$}\xspace}
+\newcommand*{\implication}[2]{\par\smallbreak\mbox{(\romannumeral#1)$\implies$(\romannumeral#2)}}
 
 \newcommand\analyse{\mbox{\sl \textbf{Analyse: }}\xspace}
 \newcommand\synthese{\mbox{\sl \textbf{Synthèse: }}\xspace}
@@ -270,7 +274,6 @@
 
 \newcommand\cas[1]{\mbox{{\sl \textbf{Cas:}\xspace #1.}}\xspace}
 \newcommand\casgeneral{\mbox{\sl \textbf{Cas général:}}\xspace}
-
 
 
 
