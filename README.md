@@ -13,7 +13,7 @@ Project
 ├── Project
 │   └── project.tex
 ├── images_schools
-└── page_de_garde
+└── page_de_garde.tex
 ```
 
 In example, one can find some older projects where some pieces are interesting to understand how to use certain libraries.
