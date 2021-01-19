@@ -1,0 +1,161 @@
+%%%%%%%% code inclusion:
+\usepackage{listings}
+\usepackage{setspace}
+
+\definecolor{Color_Background}{rgb}{1,1,1}
+\definecolor{Color_Code}{rgb}{1,0,0}
+\definecolor{Color_Decorators}{rgb}{0.5,0.5,0.5}
+\definecolor{Color_Numbers}{rgb}{0.36,0.14,0.43}
+\definecolor{Color_Comments}{rgb}{0.11,0.6,0.}
+\definecolor{Color_Strings}{rgb}{0.81,0.68,0.}
+
+\definecolor{Color_Keywords_1}{rgb}{0.4,0.4,0.4}
+\definecolor{Color_Keywords_2}{rgb}{0.05,0.,0.58}
+\definecolor{Color_Keywords_3}{rgb}{1,0.51,0}
+\definecolor{Color_Keywords_4}{rgb}{0.78,0.46,0.9}
+\definecolor{Color_Keywords_5}{rgb}{0.49,0,0.81}
+\definecolor{Color_Operators}{rgb}{1,0,0}
+
+
+\definecolor{Color_Backquotes}{rgb}{1,0,0}
+\definecolor{Color_Classname}{rgb}{1,0,0}
+\definecolor{Color_FunctionName}{rgb}{1,0,0}
+\definecolor{Color_Matching_Brackets}{rgb}{0.25,0.5,0.5}
+
+%%%%%%%%%%%%%%%%%%%%%%%%% PYTHON
+
+
+
+
+\lstset{
+language=Python,
+                                            %
+%numbering
+numbers=left,       % where to put the line-numbers; possible values are (none, left, right)
+numberstyle=\footnotesize,     % the style that is used for the line-numbers
+numbersep=1em,     % how far the line-numbers are from the code
+stepnumber = 1, % the step between two line-numbers. If it's 1, each line will be numbered
+                                            %
+%font style
+xleftmargin=1em,
+framextopmargin=2em,
+framexbottommargin=2em,
+showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+showtabs=false,             % show tabs within strings adding particular underscores
+showstringspaces=false,       % underline spaces within strings only
+frame=l,       % adds a frame around the code
+tabsize=4,      % sets default tabsize to x spaces
+breaklines=true,                            % allows for breaking lines of the code
+breakatwhitespace = false,                  % sets if automatic breaks should only happen at whitespace
+                                            %
+% Basic
+basicstyle=\ttfamily\tiny\setstretch{1},    % the size of the fonts that are used for the code
+backgroundcolor=\color{Color_Background},         % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}
+                                            %
+% Comments
+commentstyle=\color{Color_Comments},      % comment style
+                                            %
+% Strings do not work
+%stringstyle=\color{Color_Strings},                  %string style
+                                            %
+% DocStrings do not work
+% I was not able to successfully untangled comments from docstrings.
+%moredelim=**[s][\color{gray}]{"""}{"""},    %adding the """
+%moredelim=**[s][\color{gray}]{'''}{'''},    %adding the '''
+                                            %
+% Operators
+otherkeywords={!,!=,~,$,$,*,\&,+,-,^,\%,\%/\%,\%*\%,\%\%,<-,<<-,/},
+keywordstyle=\color{Color_Keywords_2},
+                                            %
+                                            %
+                                            %
+% keywords_1 : BOOL
+                                            %
+emph={fsdjskq}, % add keywords to a list
+emphstyle={\color{Color_Keywords_1}},      % keyword style
+                                            %
+                                            %
+% keywords_1 : BOOL
+                                            %
+emph={[10]False,True,None}, % add keywords to a list
+emphstyle={[10]\color{Color_Keywords_1}},      % keyword style
+                                            %
+                                            %
+% keywords_2 : CLASSICS
+                                            %
+emph={[2]import,include,from,def,for,
+while,if,is,in,elif,else,not,and,or,print,break,
+continue,return,as,del,except,exec,global,from,
+finally,global,import,lambda,inline,pass,print,
+Exception,raise,try,assert}, % add keywords to a list
+emphstyle={[2]\color{Color_Keywords_2}\bfseries},      % keyword style
+                                            %
+                                            %
+% keywords_3 : TYPES AND UTILITIES
+                                            %
+emph={[3]self,class,object,type,isinstance,copy,deepcopy,
+zip,enumerate,list,set,len,dict,tuple,range,
+append,execfile,real,imag,reduce,str,repr}, % add keywords to a list
+emphstyle={[3]\color{Color_Keywords_3}\bfseries},      % keyword style
+                                            %
+                                            %
+% keywords_4 : ALG LIB
+                                            %
+emph={[4]ode,fsolve,sqrt,exp,sin,cos,
+pi,array,norm,solve,dot,arange,linspace,isscalar,max,
+sum,flatten,shape,reshape,find,any,all,abs,plot,legend,quad,
+polyval,polyfit,hstack,concatenate,vstack,column_stack,
+empty,zeros,ones,rand,vander,grid,pcolor,eig,eigs,
+eigvals,svd,qr,tan,det,logspace,roll,min,mean,cumsum,cumprod,
+diff,vectorize,lstsq,cla,eye,xlabel,ylabel,squeeze}, % add keywords to a list
+emphstyle={[4]\color{Color_Keywords_4}},      % keyword style
+                                            %
+                                            %
+% keywords_5 : CLASS FCT
+                                            %
+emph={[5]__init__,__add__,__mul__,__div__,__sub__,__call__
+,__getitem__,__setitem__,__eq__,__ne__,__nonzero__,__rmul__,
+__radd__,__repr__,__str__,__get__,__truediv__,__pow__,__name__
+,__future__,__all__}, % add keywords to a list
+emphstyle={[5]\color{Color_Keywords_5}\bfseries},      % keyword style
+                                            %
+                                            %
+% simple import decorators etc not so important for code!
+emph={@invariant,pylab,numpy,np,scipy,plt,math,bisect,tqdm},
+emphstyle={\color{Color_Decorators}\slshape},
+}
+
+
+
+
+%%%%%%% changes color for digits
+
+% from https://tex.stackexchange.com/questions/34896/coloring-digits-with-the-listings-package
+% second answer:
+\newcommand\digitstyle{\color{Color_Numbers}}
+\makeatletter
+\newcommand{\ProcessDigit}[1]
+{%
+  \ifnum\lst@mode=\lst@Pmode\relax%
+   {\digitstyle #1}%
+  \else
+    #1%
+  \fi
+}
+\makeatother
+\lstset{literate=
+    {0}{{{\ProcessDigit{0}}}}1
+    {1}{{{\ProcessDigit{1}}}}1
+    {2}{{{\ProcessDigit{2}}}}1
+    {3}{{{\ProcessDigit{3}}}}1
+    {4}{{{\ProcessDigit{4}}}}1
+    {5}{{{\ProcessDigit{5}}}}1
+    {6}{{{\ProcessDigit{6}}}}1
+    {7}{{{\ProcessDigit{7}}}}1
+    {8}{{{\ProcessDigit{8}}}}1
+    {9}{{{\ProcessDigit{9}}}}1
+    {<=}{{\(\leq\)}}1,
+    morestring=[b]",
+    morestring=[b]',
+    morecomment=[l]//,
+}

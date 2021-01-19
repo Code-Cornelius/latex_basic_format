@@ -1,0 +1,287 @@
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage[left=2.5cm,right=2.5cm,top=2cm,bottom=3cm]{geometry}%réglages des marges du document selon vos préférences ou celles de votre établissemant
+\setlength{\headheight}{15pt}% hauteur de l'entête
+
+\usepackage{array}  %pour les array et binomes de newton 
+\usepackage{amsmath,amsfonts,amssymb}%extensions de l'ams pour les mathématiques
+\usepackage{amsthm} %pour les théoremes
+\usepackage{colortbl}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{comment} % pour les commentaires
+\usepackage{dsfont} %fonction indicatrice
+\usepackage{fancybox} %pour shadow box
+\usepackage[Rejne]{fncychap}%pour de jolis titres de chapitres voir la doc pour d'autres styles.
+\usepackage{fancyhdr}%pour les entêtes et pieds de pages
+\usepackage{graphicx}%pour insérer images et pdf entre autres
+\graphicspath{{images/}}%pour spécifier le chemin d'accès aux images
+\usepackage{lmodern}	%celui ci et le suivant pour les boites
+\usepackage{shorttoc}%pour la réalisation d'un sommaire.
+\usepackage[most]{tcolorbox}
+
+\usepackage{lipsum} %to test paragraphs
+\usepackage{verbatim} %for writing as code
+\usepackage{fancyvrb} %this is for reducing size of verbatim
+\usepackage{subfig} %for having the figures next to each other
+\usepackage{stmaryrd} % pacakge for double brackets, notation for integers.
+
+% packages for tables rotated. and algorithms.
+\usepackage[ruled,vlined, linesnumbered]{algorithm2e}
+\usepackage{lscape}
+\usepackage{rotating}
+
+
+
+
+\usepackage[english]{babel}%pour un document en englais
+\usepackage{hyperref}%rend actif les liens, références croisée, toc, ...
+		\hypersetup{colorlinks,%
+		citecolor=black,%
+		filecolor=black,%
+		linkcolor=gray,%
+		urlcolor=blue} 
+
+
+
+
+		
+		
+		
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\makeatletter
+\newenvironment{abstract}{%
+    \cleardoublepage
+    \null\vfil
+    \@beginparpenalty\@lowpenalty
+    \begin{center}%
+      \bfseries \abstractname
+      \@endparpenalty\@M
+    \end{center}}%
+   {\par\vfil\null}
+\makeatother
+
+
+\newenvironment{acknowledgements}{
+\renewcommand\abstractname{Acknowledgements}
+\begin{abstract}} {\end{abstract}
+}
+
+
+		
+
+\input{../config/config_boxes}
+\input{../config/config_font}
+\input{../config/config_colors}
+\input{../config/config_code}
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% TODO
+\usepackage{xargs}                      % Use more than one optional parameter in a new commands
+\usepackage[colorinlistoftodos,prependcaption,textsize=footnotesize]{todonotes}
+
+%red
+\newcommandx{\willdo}[1]{\todo[linecolor=orangebrulee,backgroundcolor=orangebrulee!35,bordercolor=orangebrulee,inline]{WILL DO : #1}}
+%green
+\newcommandx{\willprecise}[1]{\todo[linecolor=blue,backgroundcolor=blue!25,bordercolor=blue,inline]{WILL PRECISE : #1}}
+%purple
+\newcommandx{\willquestion}[1]{\todo[linecolor=OliveGreen,backgroundcolor=OliveGreen!25,bordercolor=OliveGreen,inline]{QUESTION : #1}}
+
+\newcommandx{\willlastcheck}[1]{\todo[linecolor=SpringGreen,backgroundcolor=SpringGreen!25,bordercolor=SpringGreen,inline]{WILL LAST CHECK BEFORE SUBMIT :#1}}
+
+\newcommandx{\thiswillnotshow}[1]{\todo[disable,inline]{#1}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%% Maths Symbols %%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%declare operator%https://tex.stackexchange.com/questions/67506/newcommand-vs-declaremathoperator
+% diff * and no star: https://tex.stackexchange.com/questions/1050/whats-the-difference-between-newcommand-and-newcommand
+% for allowing subscript under the operator use \DeclareMathOperator* instead of \DeclareMathOperator
+
+%\newcommand{•}{•}
+%\renewcommand{•}{•}
+
+
+
+
+%---- Ensemles : entiers, reels, complexes... ----
+\newcommand*{\N}{\mathbb{N}_{\geq 0}}
+\newcommand*{\Z}{\mathbb{Z}}
+\newcommand*{\Q}{\mathbb{Q}}
+\newcommand*{\R}{\mathbb{R}}
+\newcommand*{\C}{\mathbb{C}}
+\newcommand*{\Part}{\mathcal{P}}
+
+\newcommand*{\abs}[1]{\lvert #1\rvert}
+\newcommand*{\norm}[1]{\lVert #1\rVert}
+\newcommand*{\anglebrackets}[1]{\left\langle #1 \right\rangle}
+\newcommand*{\curlybrackets}[1]{\left \{ #1 \right \}}
+\DeclareMathOperator{\MSE}{MSE}
+\DeclareMathOperator{\MISE}{MISE}
+\DeclareMathOperator{\sign}{Sign}
+
+%\newcommand{\systeme}[1][2]{ \left\{ \begin{array}{#1}#2\end{array} \right. }}
+
+\newcommand{\Tau}{\mathcal{T}} % big tau
+
+
+\newcommand*{\Mat}{\mathrm{Mat}}
+\DeclareMathOperator{\fix}{fix}
+\DeclareMathOperator{\End}{End}        %Endomorphismes
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Id}{Id}
+\DeclareMathOperator{\image}{image}
+\DeclareMathOperator{\im}{Im}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\Tr}{Tr}
+\newcommand*{\Bilin}{\mathrm{Bilin}}
+\newcommand*{\Vect}{\mathrm{Vect}}
+\newcommand*{\Ker}{\mathop{\mathrm{Ker}}\nolimits}
+\newcommand*{\rg}{\mathop{\mathrm{rg}}\nolimits}
+\newcommand*{\Sp}{\mathsf{Sp}}
+\newcommand*{\dx}{\partial_x}
+\newcommand*{\dy}{\partial_y}
+
+
+%fonction charactéristique
+\DeclareMathOperator{\11charac}{\mathds{1}}
+
+%arg max and min
+\DeclareMathOperator*{\argmax}{\arg\!\max}
+\DeclareMathOperator*{\argmin}{\arg\!\min}
+
+%probability :
+\newcommand{\E}{ \mathbb E }
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\Cov}{\mathrm{Cov}}
+
+
+
+
+%---- Opérateurs utiles ----
+% number theory dividing side 6 is divisible 3
+\newcommand*\divise{\mathrel{\mid}}
+\renewcommand{\bigoplus}{\mathop{\hbox{\large $\oplus$}}}
+\newcommand*{\Bigoplus}{\mathop{\hbox{\Large $\oplus$}}}
+
+\DeclareMathOperator{\Non}{non}
+
+\newcommand*{\pgcd}{\text{pgcd}}
+\newcommand*{\ppcm}{\text{ppcm}}
+\DeclareMathOperator*{\Card}{Card}
+\DeclareMathOperator*{\supp}{supp}
+
+
+\newcommand*\conj[1]{%
+   \hbox{%
+     \vbox{%
+       \hrule height 0.5pt % The actual bar
+       \kern0.5ex%         % Distance between bar and symbol
+       \hbox{%
+         \kern-0.1em%      % Shortening on the left side
+         \ensuremath{#1}%
+         \kern-0.1em%      % Shortening on the right side
+       }%
+     }%
+   }%
+}
+
+
+\newcommand*\mean[1]{%
+   \hbox{%
+     \vbox{%
+       \hrule height 0.5pt % The actual bar
+       \kern0.5ex%         % Distance between bar and symbol
+       \hbox{%
+         \kern-0.1em%      % Shortening on the left side
+         \ensuremath{#1}%
+         \kern-0.1em%      % Shortening on the right side
+       }%
+     }%
+   }%
+}
+
+
+
+%% eviter les boucles infinies :
+\let\oldforall\forall
+\renewcommand{\forall}{\oldforall \, }
+
+\let\oldexist\exists
+\renewcommand{\exists}{\oldexist \: }
+
+\newcommand\existu{\oldexist! \: }
+
+
+
+
+
+
+
+
+
+
+
+
+%---- Démonstrations ----
+\newcommand*{\sensdirect}{\par\smallbreak\mbox{$(\implies)$}\xspace}
+\newcommand*{\sensindirect}{\par\smallbreak\mbox{$(\impliedby)$}\xspace}
+\newcommand*{\implication}[2]{\par\smallbreak\mbox{(\romannumeral#1)$\implies$(\romannumeral#2)}}
+
+\newcommand\analyse{\mbox{\sl \textbf{Analyse: }}\xspace}
+\newcommand\synthese{\mbox{\sl \textbf{Synthèse: }}\xspace}
+\newcommand\conclusion{\mbox{\sl \textbf{Conclusion: }}\xspace}
+
+\newcommand\existence{\mbox{\sl \textbf{Existence: }}\xspace}
+\newcommand\unicite{\mbox{\sl \textbf{Unicité:}}\xspace}
+
+
+\newcommand\casparticulier{\mbox{\sl \textbf{Cas particulier: }}\xspace}
+\newcommand\heredite{\mbox{\sl \textbf{Hérédité: }}\xspace}
+
+
+
+
+\newcommand\cas[1]{\mbox{{\sl \textbf{Cas:}\xspace #1.}}\xspace}
+\newcommand\casgeneral{\mbox{\sl \textbf{Cas général:}}\xspace}
+
+
+
+
+
+
+
+% do not trigger any warning related to hbox. I.E. that the line is too long. I had plenty of such useless warnings. 
+\hbadness = 15000
+\hfuzz = 100 pt 
+\vbadness=\maxdimen

@@ -1,0 +1,66 @@
+%%%%%%%%%%%%%% change fontsize and properties of titles	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{titlesec} %pour redéfinir les headers
+
+\newcommand{\sectionbreak}{\clearpage}
+
+\titleformat{\section}
+{\Large\bfseries\color[RGB]{10, 80, 144}}
+{\textcolor[RGB]{10, 80, 144}{~ \thesection}}
+{1em}{}
+
+\titleformat{\subsection}
+{\large\bfseries}
+{\rlap{\color[RGB]{238,243,252}\rule[-1.25ex]{\textwidth}{4ex}}\textcolor{Black}{~ \thesubsection}}
+{1em}{}
+% Alice blue (240, 248, 255)
+
+\titleformat*{\subsubsection}{\large\bfseries}
+\titleformat*{\paragraph}{\large\bfseries}
+\titleformat*{\subparagraph}{\large\bfseries}
+
+
+\titlespacing*{\subsection}
+{0pt}{10mm}{7mm}
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%style front%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+	\fancypagestyle{front}{%
+  		\fancyhf{}%on vide les entêtes
+  		\fancyfoot[C]{page \thepage}%
+  		\renewcommand{\headrulewidth}{0pt}%trait horizontal pour l'entête
+  		\renewcommand{\footrulewidth}{0.4pt}%trait horizontal pour les pieds de pages
+  		}
+
+
+%%%%%%%%%%%%%%%%%%%style main%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\fancypagestyle{main}{%
+		\fancyhf{}
+  		\renewcommand{\chaptermark}[1]{\markboth{\chaptername\ \thechapter.\ ##1}{}}% redéfintion pour avoir ici les titres des chapitres des sections en minuscules
+  		\renewcommand{\sectionmark}[1]{\markright{\thesection\ ##1}}
+		\fancyhead[c]{}
+		\fancyhead[RO,LE]{\rightmark}%
+  		\fancyhead[LO,RE]{\leftmark}
+		\fancyfoot[C]{}
+		\fancyfoot[RO,LE]{page \thepage}%
+  		\fancyfoot[LO,RE]{contact : niels.carioukotlarek@yahoo.com}
+  		}
+
+
+%%%%%%%%%%%%%%%%%%%style back%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+	\fancypagestyle{back}{%
+  		\fancyhf{}%on vide les entêtes
+  		\fancyfoot[C]{page \thepage}%
+  		\renewcommand{\headrulewidth}{0pt}%trait horizontal pour l'entête
+  		\renewcommand{\footrulewidth}{0.4pt}%trait horizontal pour les pieds de pages
+		}
+
+
+
+
+

@@ -1,0 +1,76 @@
+\documentclass[11pt]{book}
+ 
+\newcommand{\reporttitle}{Coupling / Curtains}
+\newcommand{\reportauthor}{CARIOU KOTLAREK}
+\newcommand{\course}{Semester Paper}
+\newcommand{\professor}{JACQUIER ; ACCIAIO}
+% include file with configuration.
+\input{../config/config_article} % various packages needed for maths etc.
+
+
+
+\begin{document}
+
+
+
+
+\begin{figure}
+\centering
+\begin{tikzpicture}
+\node (my_left) {\includegraphics[width=5cm]{example-image-a}};
+\node (my_right) [right=of my_left] {\includegraphics[width=5cm]{example-image-a}};
+
+% nodes
+% right pair
+\node (a) [] at (0.35,1.24) {};
+\node (b) [] at (7.6,1.24) {};
+%left pair
+\node (c) [] at (-0.2,1.24) {};
+\node (d) [] at (6.25,1.24) {};
+
+
+%vertical lines right pair
+\draw [line width=0.7mm, purple ] (0.35,1.3) -- (0.35,-1.33) node [right] {};;
+\draw [line width=0.7mm, purple ] (7.6,1.3) -- (7.6,-1.33) node [right] {};;
+
+%vertical lines left pair
+\draw [line width=0.7mm, purple ] (-0.2,1.3) -- (-0.2,-1.33) node [right] {};;
+\draw [line width=0.7mm, purple ] (6.25,1.3) -- (6.25,-1.33) node [right] {};;
+
+% link arrow
+\draw [thick,black,-{Latex[round]}] (a) to[bend left=90, distance = 0.8 cm] (b);
+\draw [thick,black,-{Latex[round]}] (c) to[bend left=90, distance = 1        cm] (d);
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\node (my_left) {\includegraphics[width=5 cm]{example-image-a}};
+\node (my_right) [right=of my_left] {\includegraphics[width=5cm]{example-image-a}};
+
+% nodes
+% right pair
+\node (a) [] at (0.35,1.24) {};
+\node (b) [] at (4.85,1.24) {};
+%left pair
+\node (c) [] at (-0.2,1.24) {};
+\node (d) [] at (5.4,1.24) {};
+
+
+%vertical lines right pair
+\draw [line width=0.7mm, purple ] (0.35,1.3) -- (0.35,-1.33) node [right] {};;
+\draw [line width=0.7mm, purple ] (4.85,1.3) -- (4.85,-1.33) node [right] {};;
+
+%vertical lines left pair
+\draw [line width=0.7mm, purple ] (-0.2,1.3) -- (-0.2,-1.33) node [right] {};;
+\draw [line width=0.7mm, purple ] (5.4,1.3) -- (5.4,-1.33) node [right] {};;
+
+% link arrow
+\draw [thick,black,-{Latex[round]}] (a) to[bend left=90, distance = 0.5 cm] (b);
+\draw [thick,black,-{Latex[round]}] (c) to[bend left=90, distance = 0.8 cm] (d);
+
+\end{tikzpicture}
+\caption{TRANSPORT MASS Q at the top and P at the bottom}
+\end{figure}
+
+
+
+\end{document}
