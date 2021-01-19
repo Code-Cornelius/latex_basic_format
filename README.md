@@ -1,4 +1,4 @@
-# latex_basic_format
+# latex basic format
 
 This repositery sums up the template for using latex. 
 One can copy the file article (or book) and config, and then write inside the template .tex file in order to get an already configured latex file!
@@ -12,7 +12,8 @@ Project
 │  └── the required config files
 ├── Project
 │   └── project.tex
-└── images_schools
+├── images_schools
+└── page_de_garde
 ```
 
 In example, one can find some older projects where some pieces are interesting to understand how to use certain libraries.
