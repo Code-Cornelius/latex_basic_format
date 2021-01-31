@@ -1,0 +1,33 @@
+\documentclass[11pt]{book}
+ 
+\newcommand{\reporttitle}{Coupling / Curtains}
+\newcommand{\reportauthor}{CARIOU KOTLAREK}
+\newcommand{\course}{Semester Paper}
+\newcommand{\professor}{JACQUIER ; ACCIAIO}
+% include file with configuration.
+\input{../config/config_article} % various packages needed for maths etc.
+
+
+
+\begin{document}
+
+\begin{equation*}
+\begin{array}{ll@{}ll}
+\text{minimize}  & \displaystyle\sum\limits_{j=1}^{m} w_{j}&x_{j} &\\
+\text{subject to}& \displaystyle\sum\limits_{j:e_{i} \in S_{j}}   &x_{j} \geq 1,  &i=1 ,\dots, n\\
+                 &                                                &x_{j} \in \{0,1\}, &j=1 ,\dots, m
+\end{array}
+\end{equation*}
+
+
+\begin{equation*}
+\label{problem_of_portfolio}
+\begin{array}{lc}
+\Min_{ u \in  \mathcal U }  & J(x_0, u) = \mathbb E [ ( X_T - c )^2 ]          \\
+\text{subject to }   & \mathbb E [ X_T ] = c                             \\
+                     & (X(\cdot), u(\cdot)) \text{ satisfies (\ref{eq:wealth_process})   }
+\end{array}
+\end{equation*}
+
+
+\end{document}
