@@ -1,0 +1,1 @@
+\stackrel{\mathclap{\mbox{\normalfont\tiny a.s.}}}{<}
