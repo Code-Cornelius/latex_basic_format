@@ -1,0 +1,5 @@
+\begin{itemize}
+\setlength{\itemindent}{3em}
+\item there exists a set $\Gamma$ such that $\pi_m = 1,$
+\item $\forall (x,y^-), (x,y^+), (\widetilde{x},\widetilde{y}) \in \Gamma$ such that $x < \widetilde x$ , $y^- < y^+$, then $\widetilde y \notin ]y^-,y^+[$.
+\end{itemize}
