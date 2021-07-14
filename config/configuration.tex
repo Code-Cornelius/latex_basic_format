@@ -40,13 +40,15 @@
 		citecolor=black,%
 		filecolor=black,%
 		linkcolor=gray,%
-		urlcolor=blue} 
+		urlcolor=blue}
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% setting the type of paper: either publication mode, or report mode (colorful the latter)
+\newif\ifReportFormat
 
-
-		
-		
+\ReportFormattrue  % Setting the state of the boolean variable \ifReportFormat` to true,
+% otherwise it's false already. Or you could write %\ReportFormatfalse
 		
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \makeatletter
@@ -184,7 +186,6 @@
 \newcommand{\E}{ \mathbb E }
 \newcommand{\Var}{\mathrm{Var}}
 \newcommand{\Cov}{\mathrm{Cov}}
-
 
 
 

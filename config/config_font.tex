@@ -1,5 +1,8 @@
 %%%%%%%%%%%%%% change fontsize and properties of titles	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+
+\ifReportFormat
+
 \usepackage{titlesec} %pour redéfinir les headers
 
 \newcommand{\sectionbreak}{\clearpage}
@@ -22,6 +25,9 @@
 
 \titlespacing*{\subsection}
 {0pt}{10mm}{7mm}
+
+\fi % Outer \fi
+
 
 
 
