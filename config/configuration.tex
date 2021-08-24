@@ -43,16 +43,10 @@
 		urlcolor=blue}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% setting the type of paper: either publication mode, or report mode (colorful the latter)
-\newif\ifReportFormat
-
-\ReportFormattrue  % Setting the state of the boolean variable \ifReportFormat` to true,
-% otherwise it's false already. Or you could write %\ReportFormatfalse
 		
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% abstract and acknowledgment environment.
 \makeatletter
-\newenvironment{abstract}{%
+\newenvironment{explain_abstract}{% define abstract, not using the name abstract as usually already defined.
     \cleardoublepage
     \null\vfil
     \@beginparpenalty\@lowpenalty
@@ -66,7 +60,7 @@
 
 \newenvironment{acknowledgements}{
 \renewcommand\abstractname{Acknowledgements}
-\begin{abstract}} {\end{abstract}
+\begin{explain_abstract}} {\end{explain_abstract}
 }
 
 

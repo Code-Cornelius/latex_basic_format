@@ -1,30 +1,30 @@
 %%%%%%%%%%%%%% change fontsize and properties of titles	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\ifReportFormat
+\ifColorfulFormat
 
-\usepackage{titlesec} %pour redéfinir les headers
+	\usepackage{titlesec} %pour redéfinir les headers
 
-\newcommand{\sectionbreak}{\clearpage}
+	\newcommand{\sectionbreak}{\clearpage}
 
-\titleformat{\section}
-{\Large\bfseries\color[RGB]{10, 80, 144}}
-{\textcolor[RGB]{10, 80, 144}{~ \thesection}}
-{1em}{}
+	\titleformat{\section}
+	{\Large\bfseries\color[RGB]{10, 80, 144}}
+	{\textcolor[RGB]{10, 80, 144}{~ \thesection}}
+	{1em}{}
 
-\titleformat{\subsection}
-{\large\bfseries}
-{\rlap{\color[RGB]{238,243,252}\rule[-1.25ex]{\textwidth}{4ex}}\textcolor{Black}{~ \thesubsection}}
-{1em}{}
-% Alice blue (240, 248, 255)
+	\titleformat{\subsection}
+	{\large\bfseries}
+	{\rlap{\color[RGB]{238,243,252}\rule[-1.25ex]{\textwidth}{4ex}}\textcolor{Black}{~ \thesubsection}}
+	{1em}{}
+	% Alice blue (240, 248, 255)
 
-\titleformat*{\subsubsection}{\large\bfseries}
-\titleformat*{\paragraph}{\large\bfseries}
-\titleformat*{\subparagraph}{\large\bfseries}
+	\titleformat*{\subsubsection}{\large\bfseries}
+	\titleformat*{\paragraph}{\large\bfseries}
+	\titleformat*{\subparagraph}{\large\bfseries}
 
 
-\titlespacing*{\subsection}
-{0pt}{10mm}{7mm}
+	\titlespacing*{\subsection}
+	{0pt}{10mm}{7mm}
 
 \fi % Outer \fi
 
