@@ -82,3 +82,11 @@ When the variable is set to `false`, the following more classical definitions ar
     \newtheorem{remark}[theorem]{Remark}
     \newtheorem{assumption}[theorem]{Assumption}
 
+## Appendix
+
+In order to have an appendix, use `\appendix`.
+In the case of articles, there is an issue of compatibility between the package:
+
+`\usepackage[Rejne]{fncychap}` and having no chapter defined. However, the bug arise only when one use the command appendix.
+Nevertheless, this package is not use in the case of articles, and in the case of books chapters are defined.
+The solution in the case of articles is to comment the usage of the package.
