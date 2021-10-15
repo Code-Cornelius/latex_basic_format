@@ -10,7 +10,7 @@ The dependency is such that a minimal working example would require to have such
 ```
 Project
 ├── Config
-│  └── the required config files
+│  └── the required config files. A rule of thumb is to simply copy the config file.
 ├── Project
 │   └── project.tex
 ├── images_schools

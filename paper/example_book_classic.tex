@@ -1,14 +1,14 @@
 \documentclass[11pt]{book}
- 
+
 \newcommand{\reporttitle}{TITLE PAPER}
 \newcommand{\reportauthor}{AUTHOR}
 \newcommand{\course}{Tim}
 \newcommand{\professor}{E}
 
 % include file with configuration:
-	% setting the type of paper: either publication mode, or report mode (colorful the 	latter)
-	\newif\ifColorfulFormat
-	\ColorfulFormatfalse
+% setting the type of paper: either publication mode, or report mode (colorful the 	latter)
+\newif\ifColorfulFormat
+\ColorfulFormatfalse
 \input{../config/configuration} % various packages needed for maths etc.
 \input{../config/config_biblio} % biblio
 
@@ -16,115 +16,113 @@
 \newcommand{\lsum}[1]{\sum_{ \{k : t_k^#1 < T \} }}
 
 \begin{document}
-\frontmatter
-\pagestyle{front}
-\newpage
-\listoftodos[LIST OF TODOS]
-\input{../page_de_garde}
-\thispagestyle{empty}%pour la page de garde toute blanche
+    \frontmatter
+    \pagestyle{front}
+    \newpage
+    \listoftodos[LIST OF TODOS]
+    \input{../page_de_garde}
+    \thispagestyle{empty}%pour la page de garde toute blanche
 
 
-\begin{acknowledgements}
-    \addcontentsline{toc}{chapter}{Acknowledgements}
+    \begin{acknowledgements}
+        \addcontentsline{toc}{chapter}{Acknowledgements}
 
-    Optimal transport is something many hear about but only a few understand the mechanism.
-    This project was a great occasion for understanding what can be done in this field
-    (and its connexion with the world of finance) as well as having a glimpse at the process of academical cooperation.
+        Optimal transport is something many hear about but only a few understand the mechanism.
+        This project was a great occasion for understanding what can be done in this field
+        (and its connexion with the world of finance) as well as having a glimpse at the process of academical cooperation.
 
-    I am deeply thankful to Professor and Professor for this great opportunity
-    that I have been given, of being supervised and working together with them.
-    Professor was very warm as well as supportive and
-    both were very available and always gave me great feedbacks.
+        I am deeply thankful to Professor and Professor for this great opportunity
+        that I have been given, of being supervised and working together with them.
+        Professor was very warm as well as supportive and
+        both were very available and always gave me great feedbacks.
 
-    I would also like to highlight how grateful I am to professor
-    who has followed my learning for a year and a half. Next to him, I am learning more about mathematics and about myself.
-    He was the reason why I connected to this project and it is thanks to him that I can study such interesting topics.
+        I would also like to highlight how grateful I am to professor
+        who has followed my learning for a year and a half. Next to him, I am learning more about mathematics and about myself.
+        He was the reason why I connected to this project and it is thanks to him that I can study such interesting topics.
 
-    I would also like to thank ETH for offering the opportunity of writing semester papers to their students,
-    without which, doing projects among other lectures would be much more challenging.
+        I would also like to thank ETH for offering the opportunity of writing semester papers to their students,
+        without which, doing projects among other lectures would be much more challenging.
 
-    Finally, I’m grateful for the genuine pieces of advice and thoughtful discussions
-    I had with my friends, in particular, I am thinking of
+        Finally, I’m grateful for the genuine pieces of advice and thoughtful discussions
+        I had with my friends, in particular, I am thinking of
 
-    Niels D. C. Cariou Kotlarek
-\end{acknowledgements}
+        Niels D. C. Cariou Kotlarek
+    \end{acknowledgements}
 
-\begin{explain_abstract}
-\addcontentsline{toc}{chapter}{Abstract}
+    \begin{explain_abstract}
+        \addcontentsline{toc}{chapter}{Abstract}
 
-\end{explain_abstract}
-
-
+    \end{explain_abstract}
 
 
 %%%% sommaire
-\shorttableofcontents{Content}{0}%sommaire avec uniquement les chapitres
-\addcontentsline{toc}{chapter}{Content}%ajout du sommaire dans le sommaire!
+    \shorttableofcontents{Content}{0}%sommaire avec uniquement les chapitres
+    \addcontentsline{toc}{chapter}{Content}%ajout du sommaire dans le sommaire!
 
 % Beginning of document ! %%%%%%%%%%%%%%%%%%%%%%%%
-\mainmatter
-\pagestyle{main}
+    \mainmatter
+    \pagestyle{main}
+
+
+    \chapter{HELLO}
+
+
+    \section{Motivation}
+    \lipsum
+    \begin{theorem}
+    \end{theorem}
+
+    \begin{corollary}
+    \end{corollary}
+
+    \begin{proposition}
+        bbbbbb
+    \end{proposition}
+
+    \begin{conjecture}
+        bbbbbb
+    \end{conjecture}
+
+    \begin{lemma}
+        bbbbbb
+    \end{lemma}
+
+    \begin{definition}
+        bbbbbb
+    \end{definition}
+
+    \begin{remark}
+        bbbbbb
+    \end{remark}
+
+    \begin{assumption}
+        bbbbbb
+    \end{assumption}
 
 
 
-\chapter{HELLO}
-\section{Motivation}
-\lipsum
-\begin{theorem}
-\end{theorem}
-
-\begin{corollary}
-\end{corollary}
-
-\begin{proposition}
-bbbbbb
-\end{proposition}
-
-\begin{conjecture}
-bbbbbb
-\end{conjecture}
-
-\begin{lemma}
-bbbbbb
-\end{lemma}
-
-\begin{definition}
-bbbbbb
-\end{definition}
-
-\begin{remark}
-bbbbbb
-\end{remark}
-
-\begin{assumption}
-bbbbbb
-\end{assumption}
 
 
 
-
-
-
-\cleardoublepage% le corps du document est terminé
+    \cleardoublepage% le corps du document est terminé
 % appendix
-\appendix
-\pagestyle{back} % things put at the end of the document
-\backmatter
+    \appendix
+    \pagestyle{back} % things put at the end of the document
+    \backmatter
 %%%%%%%%% APPENDIX / ANNEXE (fr)
 
 
-
 %%%%%%% bibliography
-\printbibliography
-\nocite{*}
+    \printbibliography
+    \nocite{*}
 
-\addcontentsline{toc}{chapter}{Bibliography} % add bibliography to Table of content
+    \addcontentsline{toc}{chapter}{Bibliography} % add bibliography to Table of content
 
 % list of figures
-\listoffigures
-\addcontentsline{toc}{chapter}{Table des figures}
+    \listoffigures
+    \addcontentsline{toc}{chapter}{Table des figures}
 
 % Table of content printed
-\tableofcontents%table des matières plus complète
-\addcontentsline{toc}{chapter}{Table of content}%ajout de la table des matières dans la table des matières !
+    \tableofcontents%table des matières plus complète
+    \addcontentsline{toc}{chapter}{Table of content}%ajout de la table des matières dans la table des matières !
 \end{document}
