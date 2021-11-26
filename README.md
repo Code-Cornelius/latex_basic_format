@@ -99,11 +99,14 @@ When the variable is set to `false`, the following more classical definitions ar
 
 ## Appendix
 
-In order to have an appendix, use `\appendix`. In the case of articles, there is an issue of compatibility between the
-package:
+In order to have an appendix, use `\appendix`. 
 
-`\usepackage[Rejne]{fncychap}` and having no chapter defined. However, the bug arise only when one use the command
-appendix. Nevertheless, this package is not use in the case of articles, and in the case of books chapters are defined.
+In the case of articles, there is an issue of compatibility between the
+package: `\usepackage[Rejne]{fncychap}` imported in configuration and having no chapter defined. The package modifies how chapters are displayed.
+In the case of articles, the command chapter does not exist. 
+The issue arises when the package is formatting the appendix as a chapter even though the latter does not exist for articles.
+However, the bug arise only when one use the command `appendix`.
+
 The solution in the case of articles is to comment the usage of the package.
 
 ## Bibliography
