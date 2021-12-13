@@ -44,6 +44,16 @@ Book are "book" style, while article are "amsart" style. In the later, there is 
 no presentation page. Both support biblatex. In order to compile correctly the document, it should be compiled a few
 times and with the additional bibtex reading if using it.
 
+## Two Columns article
+
+use `\documentclass[twocolumn]{article}`. 
+
+## Authors name
+
+use 
+
+`\author{ LastName1, FirstName1\\ \texttt{first1.last1@xxxxx.com} \and LastName2, FirstName2\\ \texttt{first2.last2@xxxxx.com} }`
+
 # Type Paper: a report or publication type?
 
 explain_abstract and acknowledgment environment defined inside `configuration.tex`. The environment is called
