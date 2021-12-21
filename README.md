@@ -44,6 +44,16 @@ Book are "book" style, while article are "amsart" style. In the later, there is 
 no presentation page. Both support biblatex. In order to compile correctly the document, it should be compiled a few
 times and with the additional bibtex reading if using it.
 
+## Two Columns article
+
+use `\documentclass[twocolumn]{article}`. 
+
+## Authors name
+
+use 
+
+`\author{ LastName1, FirstName1\\ \texttt{first1.last1@xxxxx.com} \and LastName2, FirstName2\\ \texttt{first2.last2@xxxxx.com} }`
+
 # Type Paper: a report or publication type?
 
 explain_abstract and acknowledgment environment defined inside `configuration.tex`. The environment is called
@@ -99,11 +109,14 @@ When the variable is set to `false`, the following more classical definitions ar
 
 ## Appendix
 
-In order to have an appendix, use `\appendix`. In the case of articles, there is an issue of compatibility between the
-package:
+In order to have an appendix, use `\appendix`. 
 
-`\usepackage[Rejne]{fncychap}` and having no chapter defined. However, the bug arise only when one use the command
-appendix. Nevertheless, this package is not use in the case of articles, and in the case of books chapters are defined.
+In the case of articles, there is an issue of compatibility between the
+package: `\usepackage[Rejne]{fncychap}` imported in configuration and having no chapter defined. The package modifies how chapters are displayed.
+In the case of articles, the command chapter does not exist. 
+The issue arises when the package is formatting the appendix as a chapter even though the latter does not exist for articles.
+However, the bug arise only when one use the command `appendix`.
+
 The solution in the case of articles is to comment the usage of the package.
 
 ## Bibliography

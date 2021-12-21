@@ -1,4 +1,4 @@
-\documentclass[11pt]{book}
+\documentclass[10pt]{book}
 
 \newcommand{\reporttitle}{TITLE PAPER}
 \newcommand{\reportauthor}{AUTHOR}
@@ -113,7 +113,9 @@
 
 
 %%%%%%% bibliography
-    \printbibliography
+% https://tex.stackexchange.com/questions/6967/how-to-split-bibliography-into-works-cited-and-works-not-cited/6977
+    \printbibliography[category=cited]% default title for `article` class: "References"
+    \printbibliography[title={Further Reading},notcategory=cited]
     \nocite{*}
 
     \addcontentsline{toc}{chapter}{Bibliography} % add bibliography to Table of content

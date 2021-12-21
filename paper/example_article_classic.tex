@@ -1,4 +1,4 @@
-\documentclass[11pt]{amsart}
+\documentclass[10pt]{amsart}
 
 
 % include file with configuration:
@@ -72,6 +72,8 @@
 %\appendix
 
 %%%%%%% bibliography
-    \printbibliography
+    % https://tex.stackexchange.com/questions/6967/how-to-split-bibliography-into-works-cited-and-works-not-cited/6977
+    \printbibliography[category=cited]% default title for `article` class: "References"
+    \printbibliography[title={Further Reading},notcategory=cited]
     \nocite{*}
 \end{document}
