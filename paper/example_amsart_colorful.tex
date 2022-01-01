@@ -1,23 +1,19 @@
-\documentclass[10pt]{article}
-%\documentclass[10pt, twocolumn]{article}
+\documentclass[10pt]{amsart}
 
 
 % include file with configuration:
 % setting the type of paper: either publication mode, or report mode (colorful the 	latter)
 \newif\ifColorfulFormat
-\ColorfulFormatfalse
+\ColorfulFormattrue
 \input{../config/configuration} % various packages needed for maths etc.
 \input{../config/config_biblio} % biblio
 
 \title{TITLE PAPER}
 %    author one information. For more authors, write another \author
-\author{
-  LastName1, FirstName1\\
-  \texttt{first1.last1@xxxxx.com}
-  \and
-  LastName2, FirstName2\\
-  \texttt{first2.last2@xxxxx.com}
-}
+\author{AUTHOR}
+\thanks{ETH Zuerich.}
+\address{Department of Mathematics, ETH, Zuerich}
+\email{niels.carioukotlarek@yahoo.com}
 \date{\today}
 
 % commands specific to this document:
@@ -26,53 +22,38 @@
 % Beginning of document !
 %%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
-\maketitle
+    \maketitle
     \begin{abstract}
     \end{abstract}
-    
 
 
-    \section{Motivation}
+
+    \section{Hello :)}
+
+
+    \section{Coucou !}
+
+    \subsection{Encore vous?}
+
     \lipsum
-    \begin{theorem}
-    \end{theorem}
 
-    \begin{corollary}
-    \end{corollary}
 
-    \begin{proposition}
-        bbbbbb
-    \end{proposition}
-
-    \begin{conjecture}
-        bbbbbb
-    \end{conjecture}
-
-    \begin{lemma}
-        bbbbbb
-    \end{lemma}
-
-    \begin{definition}
-        bbbbbb
+    \begin{definition}[my def]
+        \lipsum
     \end{definition}
 
-    \begin{remark}
-        bbbbbb
-    \end{remark}
 
-    \begin{assumption}
-        bbbbbb
-    \end{assumption}
+    \begin{theoreme}[label = thrm:X]{my theo}
+        \lipsum
+    \end{theoreme}
 
+    \begin{demo}{}{}
+        \lipsum
+    \end{demo}
 
-    \section{HITDEP}
-    \lipsum
-
-
-    \section{Numerical Result}
-
-    \subsection{HAHA!}
-    \lipsum
+    \begin{ajoutationV}{}{}
+        \lipsum
+    \end{ajoutationV}
 
 %\appendix
 

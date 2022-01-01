@@ -1,4 +1,7 @@
-\documentclass[11pt]{amsart}
+\documentclass[10pt]{article}
+%\documentclass[10pt, twocolumn]{article}
+
+
 % include file with configuration:
 % setting the type of paper: either publication mode, or report mode (colorful the 	latter)
 \newif\ifColorfulFormat
@@ -8,10 +11,13 @@
 
 \title{TITLE PAPER}
 %    author one information. For more authors, write another \author
-\author{AUTHOR}
-\thanks{ETH Zuerich.}
-\address{Department of Mathematics, ETH, Zuerich}
-\email{niels.carioukotlarek@yahoo.com}
+\author{
+    LastName1, FirstName1\\
+    \texttt{first1.last1@xxxxx.com}
+    \and
+    LastName2, FirstName2\\
+    \texttt{first2.last2@xxxxx.com}
+}
 \date{\today}
 
 % commands specific to this document:
@@ -20,9 +26,10 @@
 % Beginning of document !
 %%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
+    \maketitle
     \begin{abstract}
     \end{abstract}
-    \maketitle
+
 
 
     \section{Hello :)}
