@@ -46,7 +46,7 @@ times and with the additional bibtex reading if using it.
 
 ## Two Columns article
 
-use `\documentclass[twocolumn]{article}`. 
+use `\documentclass[10pt, twocolumn]{article}`, instead of `\documentclass[10pt]{article}`, in the article template.
 
 ## Authors name
 
