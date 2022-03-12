@@ -16,7 +16,7 @@
 \usepackage{fancyhdr}%pour les entêtes et pieds de pages
 \usepackage{graphicx}%pour insérer images et pdf entre autres
 \graphicspath{{images/}}%pour spécifier le chemin d'accès aux images
-\usepackage{lmodern}	%celui ci et le suivant pour les boites
+\usepackage{lmodern}    %celui ci et le suivant pour les boites
 \usepackage{shorttoc}%pour la réalisation d'un sommaire.
 \usepackage[most]{tcolorbox}
 
@@ -36,11 +36,11 @@
 
 \usepackage[english]{babel}%pour un document en englais
 \usepackage{hyperref}%rend actif les liens, références croisée, toc, ...
-		\hypersetup{colorlinks,%
-		citecolor=black,%
-		filecolor=black,%
-		linkcolor=gray,%
-		urlcolor=blue}
+\hypersetup{colorlinks,%
+    citecolor=black,%
+    filecolor=black,%
+    linkcolor=gray,%
+    urlcolor=blue}
 
 
 		
@@ -51,20 +51,20 @@
     \null\vfil
     \@beginparpenalty\@lowpenalty
     \begin{center}%
-      \bfseries \abstractname
-      \@endparpenalty\@M
+        \bfseries \abstractname
+        \@endparpenalty\@M
     \end{center}}%
-   {\par\vfil\null}
+    {\par\vfil\null}
 \makeatother
 
 
 \newenvironment{acknowledgements}{
-\renewcommand\abstractname{Acknowledgements}
-\begin{explain_abstract}} {\end{explain_abstract}
+    \renewcommand\abstractname{Acknowledgements}
+    \begin{explain_abstract}} {\end{explain_abstract}
 }
 
 
-		
+
 
 \input{../config/config_boxes}
 \input{../config/config_font}
@@ -98,21 +98,6 @@
 
 \newcommandx{\thiswillnotshow}[1]{\todo[disable,inline]{#1}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
@@ -180,12 +165,15 @@
 \newcommand{\E}{ \mathbb E }
 \newcommand{\Var}{\mathrm{Var}}
 \newcommand{\Cov}{\mathrm{Cov}}
-
+\newcommand{\mes}{ \ d } % measures. The differential always sticks to the integrand
+\newcommand\given[1][]{\:#1\vert\:} % for conditional probability
 
 
 %---- Opérateurs utiles ----
 % number theory dividing side 6 is divisible 3
 \newcommand*\divise{\mathrel{\mid}}
+\newcommand{\as}[1]{\stackrel{\mathclap{\mbox{\normalfont\tiny a.s.}}}{#1}} % for expressions with an a.s. above.
+
 \renewcommand{\bigoplus}{\mathop{\hbox{\large $\oplus$}}}
 \newcommand*{\Bigoplus}{\mathop{\hbox{\Large $\oplus$}}}
 
@@ -203,32 +191,32 @@
 
 
 \newcommand*\conj[1]{%
-   \hbox{%
-     \vbox{%
-       \hrule height 0.5pt % The actual bar
-       \kern0.5ex%         % Distance between bar and symbol
-       \hbox{%
-         \kern-0.1em%      % Shortening on the left side
-         \ensuremath{#1}%
-         \kern-0.1em%      % Shortening on the right side
-       }%
-     }%
-   }%
+    \hbox{%
+        \vbox{%
+            \hrule height 0.5pt % The actual bar
+            \kern0.5ex%         % Distance between bar and symbol
+            \hbox{%
+                \kern-0.1em%      % Shortening on the left side
+                \ensuremath{#1}%
+                \kern-0.1em%      % Shortening on the right side
+            }%
+        }%
+    }%
 }
 
 
 \newcommand*\mean[1]{%
-   \hbox{%
-     \vbox{%
-       \hrule height 0.5pt % The actual bar
-       \kern0.5ex%         % Distance between bar and symbol
-       \hbox{%
-         \kern-0.1em%      % Shortening on the left side
-         \ensuremath{#1}%
-         \kern-0.1em%      % Shortening on the right side
-       }%
-     }%
-   }%
+    \hbox{%
+        \vbox{%
+            \hrule height 0.5pt % The actual bar
+            \kern0.5ex%         % Distance between bar and symbol
+            \hbox{%
+                \kern-0.1em%      % Shortening on the left side
+                \ensuremath{#1}%
+                \kern-0.1em%      % Shortening on the right side
+            }%
+        }%
+    }%
 }
 
 
@@ -246,7 +234,7 @@
 
 
 
-% do not trigger any warning related to hbox. I.E. that the line is too long. I had plenty of such useless warnings. 
+% do not trigger any warning related to hbox. I.E. that the line is too long. I had plenty of such useless warnings.
 \hbadness = 15000
-\hfuzz = 100 pt 
+\hfuzz = 100 pt
 \vbadness=\maxdimen
