@@ -3,7 +3,8 @@
 %\usepackage[sorting = nty, backend=biber,]{biblatex}
 \addbibresource{bibliographie/biblio.bib}% pour indiquer ou se trouve notre .bib
 \usepackage{csquotes}% pour la gestion des guillemets français.
- 
 
-
+% creates an additional bibliography where articles not cited are still writen. Allows for easy discrimination.
+\DeclareBibliographyCategory{cited}
+\AtEveryCitekey{\addtocategory{cited}{\thefield{entrykey}}}
 
