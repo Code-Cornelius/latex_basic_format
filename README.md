@@ -35,14 +35,13 @@ Project
 In example, one can find some older projects where some pieces are interesting to understand how to use certain
 libraries.
 
-Respect the structure of the project as there are some imports that needs to be updated if the directories' organisation
-is changed.
+Respect the structure of the project as some imports needs to be updated if the directories' organisation is changed.
 
 # Difference Article / Book
 
-Book are "book" style, while article are "amsart" style. In the later, there is neither "part" nor "chapter", as well as
+Book are "book" style, while article are "amsart" style. In the latter, there is neither "part" nor "chapter", as well as
 no presentation page. Both support biblatex. In order to compile correctly the document, it should be compiled a few
-times and with the additional bibtex reading if using it.
+times and with the additional BibTeX reading if using it.
 
 ## Two Columns article
 
@@ -56,16 +55,16 @@ use
 
 # Type Paper: a report or publication type?
 
-explain_abstract and acknowledgment environment defined inside `configuration.tex`. The environment is called
-explain_abstract and not abstract because abstract already exists. In order to have a more colorful presentation, though
+`explain_abstract` and `acknowledgement` environment defined inside `configuration.tex`. The environment is called
+`explain_abstract` and not abstract because abstract already exists. In order to have a more colourful presentation, though
 it is not the classical formatting for publication, it is possible to set the variable
 
 `\ColorfulFormattrue`
 
-which is set by default to `false`, corresponding to a more classical style. In that situation, one cne can also
+which is set by default to `false`, corresponding to a more classical style. In that situation, one can also
 write: `\ColorfulFormatfalse`.
 
-The line should be added at the top of the `.tex` before importing the configuration files.
+Before importing the configuration files, the line should be added at the top of the `.tex`.
 
     \ColorfulFormattrue % Setting the state of the boolean variable \ifReportFormat` to true, 
     % otherwise it's false already. Or you could write %\ColorfulFormatfalse
@@ -87,7 +86,7 @@ particular, if the formatting is set to `true`, the following environments are d
     \begin{ajoutationV}{}{} 
     \end{ajoutationV}
 
-If one wants to disable such formatting, just replace the variable by:  `\ColorfulFormatfalse`.
+If one wants to disable such formatting, just replace the variable with:  `\ColorfulFormatfalse`.
 
 The formatting is undergone inside `config_font` and inside `config_boxes`.
 
@@ -115,12 +114,14 @@ In the case of articles, there is an issue of compatibility between the
 package: `\usepackage[Rejne]{fncychap}` imported in configuration and having no chapter defined. The package modifies how chapters are displayed.
 In the case of articles, the command chapter does not exist. 
 The issue arises when the package is formatting the appendix as a chapter even though the latter does not exist for articles.
-However, the bug arise only when one use the command `appendix`.
+However, the bug only arises when one uses the `appendix` command.
 
 The solution in the case of articles is to comment the usage of the package.
+
+If you still want to use appendices with articles, you would need to comment the package `fncychap`'s import directly. Then, it works like a charm.
 
 ## Bibliography
 
 Inside the special config file for bibliography, one can select the sorting. Traditionally, one uses the `nty`but no
-sorting (numbering wrt order of appearence)
+sorting (numbering wrt order of appearance)
 is useful in order to know if all references are used inside the text.
