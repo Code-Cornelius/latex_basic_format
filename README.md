@@ -125,3 +125,16 @@ If you still want to use appendices with articles, you would need to comment the
 Inside the special config file for bibliography, one can select the sorting. Traditionally, one uses the `nty`but no
 sorting (numbering wrt order of appearance)
 is useful in order to know if all references are used inside the text.
+
+
+## Todos
+
+The useful package `\usepackage{xargs}` for todos is included. They are printed (like a summary) at the beginning of the file thanks to `\listoftodos[LIST OF TODOS]`.
+
+The commands related to todos are:
+
+    \willdo
+    \willprecise
+    \willquestion
+    \willlastcheck
+    \thiswillnotshow
