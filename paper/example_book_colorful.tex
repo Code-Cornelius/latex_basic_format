@@ -23,6 +23,10 @@
     \input{../page_de_garde}
     \thispagestyle{empty}%pour la page de garde toute blanche
 
+    \begin{explain_abstract}
+        \addcontentsline{toc}{chapter}{Abstract}
+
+    \end{explain_abstract}
 
     \begin{acknowledgements}
         \addcontentsline{toc}{chapter}{Acknowledgements}
@@ -48,11 +52,6 @@
 
         Niels D. C. Cariou Kotlarek
     \end{acknowledgements}
-
-    \begin{explain_abstract}
-        \addcontentsline{toc}{chapter}{Abstract}
-
-    \end{explain_abstract}
 
 
 %%%% sommaire
@@ -100,10 +99,18 @@
     %\backmatter % should be used but removes numbering of the apen
 
 %%%%%%%%% APPENDIX / ANNEXE (fr)
-\chapter{A}
-\section{AAA}
-\chapter{A}
-\section{AAA}
+
+
+    \chapter{A}
+
+
+    \section{AAA}
+
+
+    \chapter{A}
+
+
+    \section{AAA}
 
 %%%%%%% bibliography
 % https://tex.stackexchange.com/questions/6967/how-to-split-bibliography-into-works-cited-and-works-not-cited/6977
